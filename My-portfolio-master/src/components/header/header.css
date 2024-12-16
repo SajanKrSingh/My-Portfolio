@@ -1,0 +1,204 @@
+/* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Hero Section Styling */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5rem 10%;
+  margin: auto;
+}
+
+.hero__content h2 {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.hero__content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.name {
+  color: #00d9d9;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.highlight {
+  color: #00d9d9;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+
+/* Social Media Icons */
+.social-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.social-icons a {
+  color: #00d9d9;
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: #00b0b0;
+}
+
+/* Image Section */
+.hero__image {
+  position: relative;
+  text-align: center;
+}
+
+.hero__image img {
+
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  border: 5px solid #00d9d9; /* Circular Border */
+  box-shadow: 0 0 15px rgba(0, 217, 217, 0.5);
+  transition: var(--transition);
+  margin-top: 10%;
+}
+.hero__image img:hover {
+  transform: scale(1.1);
+}
+
+.chat-btn {
+  margin-top: 1.5rem;
+  background-color: #00d9d9;
+  color: #121212;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.chat-btn:hover {
+  background-color: #00b0b0;
+  transform: scale(1.05);
+}
+
+/* For tablets and medium devices */
+@media screen and (max-width: 1024px) {
+  header {
+    height: 70vh; /* Adjust the header height */
+    padding-top: 4rem;
+  }
+
+  .header__socials {
+    display: none; /* Optional: Hide socials for medium screens */
+  }
+
+  .about__me1 {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #me {
+    width: 80%; /* Adjust image width */
+    height: auto;
+  }
+
+  .cta {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 1rem;
+  }
+}
+
+/* For mobile devices */
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column-reverse; /* Stack content vertically */
+    gap: 2rem;
+    padding-top: 3rem;
+    height: 90vh;
+  }
+
+  .about__me1 {
+    align-items: center;
+    text-align: center;
+  }
+
+  #me {
+    width: 50%; /* Adjust image width */
+    height: auto;
+  }
+  .hero__image img {
+    display: none;
+  }
+  .chat-btn {
+    display: none;
+  }
+
+  h1,
+  h2,
+  p {
+    font-size: 1.2rem; /* Reduce text size for mobile */
+  }
+
+  .cta {
+    flex-direction: column; /* Buttons stacked */
+    gap: 0.8rem;
+  }
+
+  .header__socials {
+    display: none; /* Hide socials completely */
+  }
+}
+
+/* For very small devices (e.g., small smartphones) */
+@media screen and (max-width: 480px) {
+  header {
+    height: 100vh;
+    gap: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  #me {
+    width: 95%;
+  }
+
+  .cta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
