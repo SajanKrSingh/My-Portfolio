@@ -2,7 +2,7 @@
 # React JS Portfolio Website
 
 
-[Live Demo](https://react-portfolio-website-kohl.vercel.app/)
+[Live Demo](https://sajansingh-portfolio.vercel.app/)
 
 
 ![preview](./src/assets/pre.png)
