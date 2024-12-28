@@ -7,13 +7,13 @@ import "./portfolio.css";
 // import IMG5 from "../../assets/Jokes Project.jpg";
 // import IMG6 from "../../assets/Project4.jpg";
 
-
 import IMG1 from "../../assets/project/lms.png";
 import IMG2 from "../../assets/fh-huquq.png";
 import IMG3 from "../../assets/project/login.png";
 import IMG4 from "../../assets/project/portfolio1.png";
-import IMG5 from "../../assets/project/imgEditor.png";  
+import IMG5 from "../../assets/project/imgEditor.png";
 import IMG6 from "../../assets/project/covid.png";
+import IMG7 from "../../assets/project/DestinPath.png";
 
 import React from "react";
 
@@ -22,6 +22,16 @@ const Portfolio = () => {
   const soloProjects = [
     {
       id: 1,
+      title: "DestinPath.Ai",
+      img: IMG7,
+      description:
+        "Our DestinPat.ai offers user to plan trips to a destination of their choice.",
+      technologies: "React |Firebase | Tailwind CSS",
+      link: "https://destinpath-ai.vercel.app/",
+      github: "https://destinpath-ai.vercel.app/",
+    },
+    {
+      id: 2,
       title: "Learning Management System",
       img: IMG1,
       description:
@@ -32,7 +42,7 @@ const Portfolio = () => {
       github: "https://github.com/SajanKrSingh/LMS",
     },
     {
-      id: 2,
+      id: 3,
       title: "Hospital API",
       img: IMG2,
       description:
@@ -42,16 +52,17 @@ const Portfolio = () => {
       github: "https://github.com/SajanKrSingh/Hospital-api-....",
     },
     {
-      id: 3,
+      id: 4,
       title: "Login and Signup Page",
       img: IMG3,
-      description: "The login and signup API enables secure user authentication, allowing users to create accounts and log in with ease.",
+      description:
+        "The login and signup API enables secure user authentication, allowing users to create accounts and log in with ease.",
       technologies: "HTML | CSS | JavaScript | sass",
       link: "https://github.com/SajanKrSingh/SignUp-and-SignIn",
       github: "https://sajankrsingh.github.io/SignUp-and-SignIn/",
     },
     {
-      id: 4,
+      id: 5,
       title: "Portfolio",
       img: IMG4,
       description:
@@ -61,7 +72,7 @@ const Portfolio = () => {
       github: "https://github.com/SajanKrSingh/Portfolio",
     },
     {
-      id: 5,
+      id: 6,
       title: "Image Editor",
       img: IMG5,
       description:
@@ -71,7 +82,7 @@ const Portfolio = () => {
       github: "https://github.com/SajanKrSingh/Image-Editor",
     },
     {
-      id: 6,
+      id: 7,
       title: "Covid-19_in-_india_dashboard ",
       img: IMG6,
       description:
