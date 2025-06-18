@@ -4,7 +4,6 @@ import React from "react";
 import { VscFolderLibrary } from "react-icons/vsc";
 import img from "../../assets/Me1.png";
 
-
 const Intro = () => {
   return (
     <section id="about">
@@ -20,18 +19,23 @@ const Intro = () => {
           <div className="about__cards">
             <article className="about__card">
               <FaAward className="about__icon" />
-              <h5>Certification </h5>
-              <small>Full Stack Web Development</small>
+              <h5>Experience </h5>
+              <small>April 2025 - Present</small>
             </article>
             <article className="about__card">
               <VscFolderLibrary className="about__icon" />
               <h5>Projects</h5>
-              <small>5+ Completed Projects</small>
+              <small>10+ Completed Projects</small>
             </article>
           </div>
           <p>
-          "Hi, I’m Sajan Kumar Singh, a Full Stack Developer with a focus on JavaScript technologies like React and Node.js. My goal is to create fast, responsive, and reliable web applications that drive results.
-I believe in building solutions that not only meet the technical requirements but also deliver excellent user experiences. Currently, I’m a freelancer, working with clients from various industries to build custom web applications that help businesses succeed."
+            "Hi, I’m Sajan Kumar Singh, a Full Stack Developer with a focus on
+            JavaScript technologies like React and Node.js. My goal is to create
+            fast, responsive, and reliable web applications that drive results.
+            I believe in building solutions that not only meet the technical
+            requirements but also deliver excellent user experiences. Currently,
+            I’m a freelancer, working with clients from various industries to
+            build custom web applications that help businesses succeed."
           </p>
           <a href="#contact" className="btn btn-primary">
             Let's Talk
