@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import CTA from "./CTA";
 import "./header.css";
 import profileImage from "../../assets/me11.png";
@@ -54,7 +53,6 @@ const Header = () => {
       {/* Image Section */}
       <div className="hero__image">
         <img src={profileImage} alt="Profile" />
-        
       </div>
     </section>
   );
