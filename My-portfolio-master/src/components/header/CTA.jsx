@@ -9,6 +9,7 @@ const CTA = () => {
         href={CV}
         download
         className="btn"
+        alt="Sajan Singh CV"
       >
         Download CV
       </a>

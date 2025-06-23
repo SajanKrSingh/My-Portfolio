@@ -35,16 +35,25 @@ const Header = () => {
         <CTA />
         {/* Social Media Links */}
         <div className="social-icons">
-          <a href="https://github.com/SajanKrSingh">
+          <a href="https://github.com/SajanKrSingh" alt="Sajan Singh Github">
             <FaGithub />
           </a>
-          <a href="https://www.linkedin.com/in/sajan-kumar-singh-a59952262/">
+          <a
+            href="https://www.linkedin.com/in/sajan-kumar-singh-a59952262/"
+            alt="Sajan Singh Linkedin"
+          >
             <FaLinkedin />
           </a>
-          <a href="https://www.instagram.com/sajan_kumar_singh__?igsh=eHp5Z29wenc4ZG9u">
+          <a
+            href="https://www.instagram.com/sajan_kumar_singh__?igsh=eHp5Z29wenc4ZG9u"
+            alt="Sajan Singh Instagram"
+          >
             <FaInstagram />
           </a>
-          <a href="https://www.facebook.com/profile.php?id=100046117037884&mibextid=ZbWKwL">
+          <a
+            href="https://www.facebook.com/profile.php?id=100046117037884&mibextid=ZbWKwL"
+            alt="Sajan Singh Facebook"
+          >
             <FaFacebook />
           </a>
         </div>
@@ -52,7 +61,7 @@ const Header = () => {
 
       {/* Image Section */}
       <div className="hero__image">
-        <img src={profileImage} alt="Profile" />
+        <img src={profileImage} alt="Sajan Singh" />
       </div>
     </section>
   );
