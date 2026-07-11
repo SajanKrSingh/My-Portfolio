@@ -3,12 +3,13 @@ import HeroScene from "./HeroScene";
 import IntroMedia from "./IntroMedia";
 import "./header.css";
 import profileImage from "../../assets/me11.png";
+import introVideo from "../../assets/intro-video-1.mp4";
 import Typewriter from "typewriter-effect";
 
 import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 
-// Drop an intro video file in src/assets and pass it here to replace the photo with your video.
-const introVideoSrc = null;
+// Swap to "../../assets/intro-video-2.mp4" (or your own file) to change the Hero video.
+const introVideoSrc = introVideo;
 
 const Header = () => {
   return (
