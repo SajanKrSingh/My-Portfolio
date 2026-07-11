@@ -3,6 +3,7 @@ import { FaAward } from "react-icons/fa";
 import React from "react";
 import { VscFolderLibrary } from "react-icons/vsc";
 import img from "../../assets/Me1.png";
+import TiltCard from "../common/TiltCard";
 
 const Intro = () => {
   return (
@@ -11,9 +12,9 @@ const Intro = () => {
       <h2>About Me</h2>
       <div className="container about__container">
         <div className="about__me">
-          <div className="about__me-image">
-            <img src={img} alt="Rasif Taghizade" />
-          </div>
+          <TiltCard className="about__me-image" maxTilt={8}>
+            <img src={img} alt="Sajan Kumar Singh" />
+          </TiltCard>
         </div>
         <div className="about__content">
           <div className="about__cards">
@@ -25,17 +26,19 @@ const Intro = () => {
             <article className="about__card">
               <VscFolderLibrary className="about__icon" />
               <h5>Projects</h5>
-              <small>10+ Completed Projects</small>
+              <small>7+ Completed Projects</small>
             </article>
           </div>
           <p>
-            "Hi, I’m Sajan Kumar Singh, a Full Stack Developer with a focus on
-            JavaScript technologies like React and Node.js. My goal is to create
-            fast, responsive, and reliable web applications that drive results.
-            I believe in building solutions that not only meet the technical
-            requirements but also deliver excellent user experiences. Currently,
-            I’m a freelancer, working with clients from various industries to
-            build custom web applications that help businesses succeed."
+            "Hi, I'm Sajan Kumar Singh, a Full Stack Developer specializing in
+            the Next.js / MERN stack. I hold an MCA from Chandigarh University
+            and currently work at EdiGlobe, where I built a full-stack
+            Enterprise CRM &amp; HRMS platform using Next.js 15, Firebase, and
+            Tailwind CSS &mdash; covering lead generation, RBAC authentication,
+            HR attendance, and Razorpay-powered financial workflows. Outside of
+            work, I explore AI-integrated products, from real-time voice
+            assistants to Gemini-powered travel planners, always aiming to
+            ship fast, reliable, and delightful user experiences."
           </p>
           <a href="#contact" className="btn btn-primary">
             Let's Talk

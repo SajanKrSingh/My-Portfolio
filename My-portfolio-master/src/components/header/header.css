@@ -12,11 +12,29 @@ a {
 
 /* Hero Section Styling */
 .hero {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5rem 10%;
   margin: auto;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__canvas {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__content,
+.hero__image {
+  position: relative;
+  z-index: 1;
 }
 
 .hero__content h2 {
@@ -28,6 +46,14 @@ a {
   font-size: 3rem;
   font-weight: bold;
   color: #ffffff;
+}
+
+.hero__role {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #00d9d9;
+  min-height: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .name {
@@ -67,24 +93,43 @@ p {
   color: #00b0b0;
 }
 
-/* Image Section */
+/* Image / Video Section */
 .hero__image {
   position: relative;
   text-align: center;
 }
 
-.hero__image img {
-
-  width: 450px;
-  height: 450px;
+.hero__media-frame {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 8%;
   border-radius: 50%;
-  border: 5px solid #00d9d9; /* Circular Border */
-  box-shadow: 0 0 15px rgba(0, 217, 217, 0.5);
-  transition: var(--transition);
-  margin-top: 10%;
+  padding: 6px;
+  background: conic-gradient(from 0deg, #00d9d9, #4db5ff, #8a7dff, #00d9d9);
+  box-shadow: 0 0 35px rgba(0, 217, 217, 0.35);
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
-.hero__image img:hover {
-  transform: scale(1.1);
+
+.hero__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--color-bg);
+}
+
+.hero__media-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(0, 217, 217, 0.35), transparent 70%);
+  filter: blur(10px);
 }
 
 .chat-btn {
@@ -106,9 +151,13 @@ p {
 
 /* For tablets and medium devices */
 @media screen and (max-width: 1024px) {
-  header {
-    height: 70vh; /* Adjust the header height */
-    padding-top: 4rem;
+  .hero {
+    padding: 4rem 6%;
+  }
+
+  .hero__media-frame {
+    width: 320px;
+    height: 320px;
   }
 
   .header__socials {
@@ -134,11 +183,10 @@ p {
 
 /* For mobile devices */
 @media screen and (max-width: 768px) {
-  header {
+  .hero {
     flex-direction: column-reverse; /* Stack content vertically */
     gap: 2rem;
     padding-top: 3rem;
-    height: 90vh;
   }
 
   .about__me1 {
@@ -150,8 +198,13 @@ p {
     width: 50%; /* Adjust image width */
     height: auto;
   }
-  .hero__image img {
-    display: none;
+  .hero__media-frame {
+    width: 220px;
+    height: 220px;
+    margin-top: 1rem;
+  }
+  .hero {
+    padding: 3rem 6%;
   }
   .chat-btn {
     display: none;
@@ -175,8 +228,7 @@ p {
 
 /* For very small devices (e.g., small smartphones) */
 @media screen and (max-width: 480px) {
-  header {
-    height: 100vh;
+  .hero {
     gap: 1.5rem;
     padding-top: 2rem;
   }
@@ -193,8 +245,9 @@ p {
     font-size: 1rem;
   }
 
-  #me {
-    width: 95%;
+  .hero__media-frame {
+    width: 200px;
+    height: 200px;
   }
 
   .cta {

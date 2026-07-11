@@ -3,6 +3,7 @@ import "./contact.css";
 import React, { useRef, useState } from "react";
 
 import { MdOutlineEmail } from "react-icons/md";
+import { FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 
 const Contact = () => {
@@ -42,8 +43,19 @@ const Contact = () => {
           <article className="contact__option">
             <MdOutlineEmail className="contact__option-icon" />
             <h4>Email</h4>
-            <h5>rajsajan0013@gmail.com</h5>
-            <a href="mailto:rajsajan0013@gmail.com">Send a message</a>
+            <h5>kumarsajan0013@gmail.com</h5>
+            <a href="mailto:kumarsajan0013@gmail.com">Send a message</a>
+          </article>
+          <article className="contact__option">
+            <FaPhoneAlt className="contact__option-icon" />
+            <h4>Phone</h4>
+            <h5>+91 8873078315</h5>
+            <a href="tel:+918873078315">Call me</a>
+          </article>
+          <article className="contact__option">
+            <FaMapMarkerAlt className="contact__option-icon" />
+            <h4>Location</h4>
+            <h5>Ramgarh, Panchkula, Haryana</h5>
           </article>
         </div>
         <form ref={formRef} onSubmit={handleSubmit}>

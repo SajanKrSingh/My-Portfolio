@@ -1,35 +1,52 @@
 import CTA from "./CTA";
+import HeroScene from "./HeroScene";
+import IntroMedia from "./IntroMedia";
 import "./header.css";
 import profileImage from "../../assets/me11.png";
+import Typewriter from "typewriter-effect";
 
 import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+
+// Drop an intro video file in src/assets and pass it here to replace the photo with your video.
+const introVideoSrc = null;
 
 const Header = () => {
   return (
     <section id="home" className="hero">
+      <HeroScene />
+
       <div className="hero__content">
         <h1>Hello, It's Me</h1>
         <h2 className="name" style={{ fontWeight: "bold", fontSize: "40px" }}>
           {" "}
           Sajan Kumar Singh{" "}
-          <span
-            style={{ color: "yellow", fontWeight: "bold", fontSize: "15px" }}
-          >
-            ( Full Stack Developer )
-          </span>
         </h2>
+        <div className="hero__role">
+          <Typewriter
+            options={{
+              strings: [
+                "Full Stack Developer",
+                "MERN Stack Developer",
+                "Next.js Developer",
+                "AI-Integrated Web Apps",
+              ],
+              autoStart: true,
+              loop: true,
+              deleteSpeed: 30,
+            }}
+          />
+        </div>
         <p>
-          "I am an aspiring{" "}
+          I am a{" "}
           <span style={{ color: "#00d9d9", fontWeight: "bold" }}>
             Full Stack Developer
-          </span>
-          , specializing in the MERN stack
+          </span>{" "}
+          building enterprise CRM/HRMS platforms and AI-powered products with
           <br />
-          to build scalable, efficient, and user-friendly applications. I have a
+          Next.js, React, Node.js and Firebase. I turn complex, real-world
+          workflows into fast,
           <br />
-          passion for solving real-world problems through clean, maintainable
-          <br />
-          code and modern web technologies."
+          scalable, and user-friendly applications.
         </p>
 
         <CTA />
@@ -59,9 +76,13 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Image Section */}
+      {/* Media Section */}
       <div className="hero__image">
-        <img src={profileImage} alt="Sajan Singh" />
+        <IntroMedia
+          videoSrc={introVideoSrc}
+          posterSrc={profileImage}
+          alt="Sajan Kumar Singh"
+        />
       </div>
     </section>
   );

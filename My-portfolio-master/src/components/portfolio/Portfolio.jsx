@@ -16,43 +16,58 @@ import IMG6 from "../../assets/project/covid.png";
 import IMG7 from "../../assets/project/DestinPath.png";
 
 import React from "react";
+import { FaMicrophoneAlt } from "react-icons/fa";
+import TiltCard from "../common/TiltCard";
 
 //Portfolio function
 const Portfolio = () => {
   const soloProjects = [
     {
       id: 1,
+      title: "Zarex - AI Voice Assistant",
+      icon: <FaMicrophoneAlt />,
+      featured: true,
+      description:
+        "A real-time, cloud-native conversational AI assistant integrating Murf AI (TTS), Google Gemini (LLM), and AssemblyAI (STT) over WebSockets with switchable AI personas, containerized with Docker.",
+      technologies: "Python | FastAPI | Docker | WebSockets | Murf.ai",
+      link: "https://github.com/SajanKrSingh",
+      github: "https://github.com/SajanKrSingh",
+    },
+    {
+      id: 2,
       title: "DestinPath.Ai",
       img: IMG7,
+      featured: true,
       description:
-        "Our DestinPat.ai offers user to plan trips to a destination of their choice.",
-      technologies: "React |Firebase | Tailwind CSS",
+        "An AI-driven travel itinerary generator integrating Google Gemini and Google Places APIs to create fully personalized, day-by-day trip plans, achieving a 90% reduction in planning time.",
+      technologies: "React.js | Firebase | Gemini AI",
       link: "https://destinpath-ai.vercel.app/",
       github: "https://destinpath-ai.vercel.app/",
     },
     {
-      id: 2,
-      title: "Learning Management System",
+      id: 3,
+      title: "Smart Learning Management System",
       img: IMG1,
+      featured: true,
       description:
-        "Our MERN-based LMS offers secure authentication, course management, and live classes.",
-      technologies: "MongoDB | Express Js | React Js | Node Js",
-
+        "A scalable LMS with distinct Instructor and Student dashboards, Razorpay payments with webhook-based auto-enrollment, Multer file handling, and Redux Toolkit state management.",
+      technologies: "MongoDB | Express.js | React.js | Node.js | Redux",
       link: "https://learning-mangement-system-app.vercel.app/",
       github: "https://github.com/SajanKrSingh/LMS",
     },
     {
-      id: 3,
-      title: "Hospital API",
+      id: 4,
+      title: "Hospital Management API",
       img: IMG2,
+      featured: true,
       description:
-        "The hospital API enables secure access to patient records, appointments, doctor management, and medical history.",
-      technologies: "MongoDB | Express Js | Node Js",
+        "A RESTful API handling complex relationships between Doctors, Patients, and Medical Reports, secured with JWT authentication and bcrypt password hashing.",
+      technologies: "Node.js | Express.js | MongoDB | JWT",
       link: "https://github.com/SajanKrSingh/Hospital-api-....",
       github: "https://github.com/SajanKrSingh/Hospital-api-....",
     },
     {
-      id: 4,
+      id: 5,
       title: "Login and Signup Page",
       img: IMG3,
       description:
@@ -62,7 +77,7 @@ const Portfolio = () => {
       github: "https://sajankrsingh.github.io/SignUp-and-SignIn/",
     },
     {
-      id: 5,
+      id: 6,
       title: "Portfolio",
       img: IMG4,
       description:
@@ -72,7 +87,7 @@ const Portfolio = () => {
       github: "https://github.com/SajanKrSingh/Portfolio",
     },
     {
-      id: 6,
+      id: 7,
       title: "Image Editor",
       img: IMG5,
       description:
@@ -82,7 +97,7 @@ const Portfolio = () => {
       github: "https://github.com/SajanKrSingh/Image-Editor",
     },
     {
-      id: 7,
+      id: 8,
       title: "Covid-19_in-_india_dashboard ",
       img: IMG6,
       description:
@@ -100,9 +115,14 @@ const Portfolio = () => {
 
       <div className="container portfolio__container">
         {soloProjects.map((pro) => (
-          <article className="portfolio__item" key={pro.id}>
+          <TiltCard className="portfolio__item" key={pro.id} maxTilt={7}>
+            {pro.featured && <span className="portfolio__badge">Featured</span>}
             <div className="portfolio__item-image">
-              <img src={pro.img} alt={pro.title} />
+              {pro.img ? (
+                <img src={pro.img} alt={pro.title} />
+              ) : (
+                <div className="portfolio__item-icon">{pro.icon}</div>
+              )}
             </div>
             <div className="portfolio__item-content">
               <h3>{pro.title}</h3>
@@ -127,7 +147,7 @@ const Portfolio = () => {
                 Live Demo
               </a>
             </div>
-          </article>
+          </TiltCard>
         ))}
       </div>
     </section>
