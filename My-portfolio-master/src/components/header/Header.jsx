@@ -3,26 +3,51 @@ import HeroScene from "./HeroScene";
 import IntroMedia from "./IntroMedia";
 import "./header.css";
 import profileImage from "../../assets/me11.png";
-import introVideo from "../../assets/intro-video-1.mp4";
 import Typewriter from "typewriter-effect";
+import { motion } from "framer-motion";
 
 import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 
-// Swap to "../../assets/intro-video-2.mp4" (or your own file) to change the Hero video.
-const introVideoSrc = introVideo;
+// Drop your intro video in src/assets and pass its import here to replace the photo.
+const introVideoSrc = null;
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.16, delayChildren: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 36 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 const Header = () => {
   return (
     <section id="home" className="hero">
       <HeroScene />
 
-      <div className="hero__content">
-        <h1>Hello, It's Me</h1>
-        <h2 className="name" style={{ fontWeight: "bold", fontSize: "40px" }}>
+      <motion.div
+        className="hero__content"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h1 variants={itemVariants}>Hello, It's Me</motion.h1>
+        <motion.h2
+          className="name"
+          variants={itemVariants}
+          style={{ fontWeight: "bold", fontSize: "40px" }}
+        >
           {" "}
           Sajan Kumar Singh{" "}
-        </h2>
-        <div className="hero__role">
+        </motion.h2>
+        <motion.div className="hero__role" variants={itemVariants}>
           <Typewriter
             options={{
               strings: [
@@ -36,8 +61,8 @@ const Header = () => {
               deleteSpeed: 30,
             }}
           />
-        </div>
-        <p>
+        </motion.div>
+        <motion.p variants={itemVariants}>
           I am a{" "}
           <span style={{ color: "#00d9d9", fontWeight: "bold" }}>
             Full Stack Developer
@@ -48,11 +73,13 @@ const Header = () => {
           workflows into fast,
           <br />
           scalable, and user-friendly applications.
-        </p>
+        </motion.p>
 
-        <CTA />
+        <motion.div variants={itemVariants}>
+          <CTA />
+        </motion.div>
         {/* Social Media Links */}
-        <div className="social-icons">
+        <motion.div className="social-icons" variants={itemVariants}>
           <a href="https://github.com/SajanKrSingh" alt="Sajan Singh Github">
             <FaGithub />
           </a>
@@ -74,17 +101,22 @@ const Header = () => {
           >
             <FaFacebook />
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Media Section */}
-      <div className="hero__image">
+      <motion.div
+        className="hero__image"
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+      >
         <IntroMedia
           videoSrc={introVideoSrc}
           posterSrc={profileImage}
           alt="Sajan Kumar Singh"
         />
-      </div>
+      </motion.div>
     </section>
   );
 };

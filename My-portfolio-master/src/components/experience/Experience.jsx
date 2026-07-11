@@ -3,6 +3,7 @@ import { BsFillPatchCheckFill } from "react-icons/bs";
 import { FaAward } from "react-icons/fa";
 import "./experience.css";
 import TiltCard from "../common/TiltCard";
+import Reveal from "../common/Reveal";
 
 const skillCategories = [
   {
@@ -78,29 +79,31 @@ const certifications = [
 const Experience = () => {
   return (
     <section id="experience">
-      <h5>The Skills I Have</h5>
-      <h2>My Experience</h2>
+      <Reveal as="h5">The Skills I Have</Reveal>
+      <Reveal as="h2" delay={0.1}>My Experience</Reveal>
 
       <div className="container experience__container">
         <div className="experience__grid">
-          {skillCategories.map((category) => (
-            <TiltCard className="experience__frontend" key={category.title} maxTilt={6}>
-              <h3>{category.title}</h3>
-              <div className="experience__content">
-                {category.skills.map((skill) => (
-                  <article className="experience__details" key={skill}>
-                    <BsFillPatchCheckFill className="experience__details-icon" />
-                    <h4>{skill}</h4>
-                  </article>
-                ))}
-              </div>
-            </TiltCard>
+          {skillCategories.map((category, index) => (
+            <Reveal key={category.title} delay={index * 0.1}>
+              <TiltCard className="experience__frontend" maxTilt={6}>
+                <h3>{category.title}</h3>
+                <div className="experience__content">
+                  {category.skills.map((skill) => (
+                    <article className="experience__details" key={skill}>
+                      <BsFillPatchCheckFill className="experience__details-icon" />
+                      <h4>{skill}</h4>
+                    </article>
+                  ))}
+                </div>
+              </TiltCard>
+            </Reveal>
           ))}
         </div>
 
         <div className="work-history">
-          <h3>Work Experience</h3>
-          <div className="work-history__role">
+          <Reveal as="h3">Work Experience</Reveal>
+          <Reveal className="work-history__role" delay={0.1}>
             <div className="work-history__role-header">
               <h4>Web Developer (Next.js &amp; MERN Stack)</h4>
               <span>Jan 2025 - Present</span>
@@ -113,24 +116,26 @@ const Experience = () => {
               Firebase, and Tailwind CSS.
             </p>
             <div className="work-history__highlights">
-              {workHighlights.map((item) => (
-                <TiltCard className="work-history__card" key={item.heading} maxTilt={5}>
-                  <h5>{item.heading}</h5>
-                  <p>{item.details}</p>
-                </TiltCard>
+              {workHighlights.map((item, index) => (
+                <Reveal key={item.heading} delay={index * 0.08}>
+                  <TiltCard className="work-history__card" maxTilt={5}>
+                    <h5>{item.heading}</h5>
+                    <p>{item.details}</p>
+                  </TiltCard>
+                </Reveal>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
 
         <div className="certifications">
-          <h3>Certifications</h3>
+          <Reveal as="h3">Certifications</Reveal>
           <ul className="certifications__list">
-            {certifications.map((cert) => (
-              <li key={cert}>
+            {certifications.map((cert, index) => (
+              <Reveal as="li" key={cert} delay={index * 0.08} y={20}>
                 <FaAward className="experience__details-icon" />
                 <span>{cert}</span>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>

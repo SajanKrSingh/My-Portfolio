@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Contact from "./components/contact/Contact";
 import Experience from "./components/experience/Experience";
@@ -8,9 +8,12 @@ import Intro from "./components/intro/Intro";
 import Portfolio from "./components/portfolio/Portfolio";
 import Testimonials from "./components/testimonials/Testimonials";
 import Topbar from "./components/topbar/Topbar";
+import Preloader from "./components/common/Preloader";
 import logo from "./assets/myLogo.png";
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+
   return (
     <>
       {/* ✅ SEO Meta Tags */}
@@ -42,18 +45,24 @@ const App = () => {
         <meta name="robots" content="index, follow" />
       </Helmet>
 
-      {/* ✅ Main Application Components */}
-      <div className="logo1">
-        <img src={logo} id="myLogo" alt="Sajan Kumar Singh Logo" />
-      </div>
-      <Header />
-      <Topbar />
-      <Intro />
-      <Experience />
-      <Portfolio />
-      <Testimonials />
-      <Contact />
-      <Footer />
+      <Preloader onComplete={() => setLoading(false)} />
+
+      {!loading && (
+        <>
+          {/* ✅ Main Application Components */}
+          <div className="logo1">
+            <img src={logo} id="myLogo" alt="Sajan Kumar Singh Logo" />
+          </div>
+          <Header />
+          <Topbar />
+          <Intro />
+          <Experience />
+          <Portfolio />
+          <Testimonials />
+          <Contact />
+          <Footer />
+        </>
+      )}
     </>
   );
 };

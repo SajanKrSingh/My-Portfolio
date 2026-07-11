@@ -18,6 +18,7 @@ import IMG7 from "../../assets/project/DestinPath.png";
 import React from "react";
 import { FaMicrophoneAlt } from "react-icons/fa";
 import TiltCard from "../common/TiltCard";
+import Reveal from "../common/Reveal";
 
 //Portfolio function
 const Portfolio = () => {
@@ -110,44 +111,46 @@ const Portfolio = () => {
 
   return (
     <section id="portfolio">
-      <h5>My Recent Work</h5>
-      <h2>Portfolio</h2>
+      <Reveal as="h5">My Recent Work</Reveal>
+      <Reveal as="h2" delay={0.1}>Portfolio</Reveal>
 
       <div className="container portfolio__container">
-        {soloProjects.map((pro) => (
-          <TiltCard className="portfolio__item" key={pro.id} maxTilt={7}>
-            {pro.featured && <span className="portfolio__badge">Featured</span>}
-            <div className="portfolio__item-image">
-              {pro.img ? (
-                <img src={pro.img} alt={pro.title} />
-              ) : (
-                <div className="portfolio__item-icon">{pro.icon}</div>
-              )}
-            </div>
-            <div className="portfolio__item-content">
-              <h3>{pro.title}</h3>
-              <p>{pro.description}</p>
-              <p>{pro.technologies}</p>
-            </div>
-            <div className="portfolio__item-cta">
-              <a
-                href={pro.github}
-                target="_blank"
-                className="btn"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-              <a
-                href={pro.link}
-                target="_blank"
-                className="btn btn-primary"
-                rel="noreferrer"
-              >
-                Live Demo
-              </a>
-            </div>
-          </TiltCard>
+        {soloProjects.map((pro, index) => (
+          <Reveal key={pro.id} delay={(index % 3) * 0.1}>
+            <TiltCard className="portfolio__item" maxTilt={7}>
+              {pro.featured && <span className="portfolio__badge">Featured</span>}
+              <div className="portfolio__item-image">
+                {pro.img ? (
+                  <img src={pro.img} alt={pro.title} />
+                ) : (
+                  <div className="portfolio__item-icon">{pro.icon}</div>
+                )}
+              </div>
+              <div className="portfolio__item-content">
+                <h3>{pro.title}</h3>
+                <p>{pro.description}</p>
+                <p>{pro.technologies}</p>
+              </div>
+              <div className="portfolio__item-cta">
+                <a
+                  href={pro.github}
+                  target="_blank"
+                  className="btn"
+                  rel="noreferrer"
+                >
+                  GitHub
+                </a>
+                <a
+                  href={pro.link}
+                  target="_blank"
+                  className="btn btn-primary"
+                  rel="noreferrer"
+                >
+                  Live Demo
+                </a>
+              </div>
+            </TiltCard>
+          </Reveal>
         ))}
       </div>
     </section>
