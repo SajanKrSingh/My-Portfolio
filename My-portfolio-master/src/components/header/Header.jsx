@@ -5,6 +5,7 @@ import "./header.css";
 import profileImage from "../../assets/me11.png";
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
+import useIsDesktop from "../common/useIsDesktop";
 
 import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 
@@ -28,9 +29,11 @@ const itemVariants = {
 };
 
 const Header = () => {
+  const isDesktop = useIsDesktop(768);
+
   return (
     <section id="home" className="hero">
-      <HeroScene />
+      {isDesktop && <HeroScene />}
 
       <motion.div
         className="hero__content"
