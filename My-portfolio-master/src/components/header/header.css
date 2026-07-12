@@ -14,14 +14,44 @@ a {
 .hero {
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  min-height: 100vh;
   padding: 5rem 10%;
   margin: auto;
   overflow: hidden;
   isolation: isolate;
   background: radial-gradient(circle at 15% 20%, rgba(0, 217, 217, 0.16), transparent 45%),
     radial-gradient(circle at 85% 75%, rgba(77, 181, 255, 0.14), transparent 45%);
+}
+
+.hero__video-bg,
+.hero__photo-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.hero__photo-bg {
+  background-size: cover;
+  background-position: center;
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+      100deg,
+      rgba(15, 15, 30, 0.94) 0%,
+      rgba(15, 15, 30, 0.8) 38%,
+      rgba(15, 15, 30, 0.45) 65%,
+      rgba(15, 15, 30, 0.15) 100%
+    ),
+    linear-gradient(to top, rgba(15, 15, 30, 0.85) 0%, rgba(15, 15, 30, 0) 45%);
 }
 
 .hero__canvas {
@@ -31,14 +61,38 @@ a {
   width: 100% !important;
   height: 100vh !important;
   max-height: 100%;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
 }
 
-.hero__content,
-.hero__image {
+.hero__content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
+  max-width: 640px;
+}
+
+.hero__sound-toggle {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 4;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(15, 15, 30, 0.65);
+  backdrop-filter: blur(6px);
+  color: var(--color-white);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.hero__sound-toggle:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
 }
 
 .hero__content h2 {
@@ -97,69 +151,6 @@ p {
   color: #00b0b0;
 }
 
-/* Image / Video Section */
-.hero__image {
-  position: relative;
-  text-align: center;
-}
-
-.hero__media-frame {
-  position: relative;
-  width: 400px;
-  height: 400px;
-  margin: 0 auto;
-  margin-top: 8%;
-  border-radius: 50%;
-  padding: 6px;
-  background: conic-gradient(from 0deg, #00d9d9, #4db5ff, #8a7dff, #00d9d9);
-  box-shadow: 0 0 35px rgba(0, 217, 217, 0.35);
-  transition: transform 0.15s ease-out;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-.hero__media {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  background: var(--color-bg);
-}
-
-.hero__media-glow {
-  position: absolute;
-  inset: -20px;
-  border-radius: 50%;
-  z-index: -1;
-  background: radial-gradient(circle, rgba(0, 217, 217, 0.35), transparent 70%);
-  filter: blur(10px);
-}
-
-.hero__media-sound {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border: none;
-  border-radius: 50%;
-  background: rgba(15, 15, 30, 0.65);
-  backdrop-filter: blur(6px);
-  color: var(--color-white);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: var(--transition);
-  z-index: 2;
-}
-
-.hero__media-sound:hover {
-  background: var(--color-primary);
-  color: var(--color-bg);
-}
-
 .chat-btn {
   margin-top: 1.5rem;
   background-color: #00d9d9;
@@ -181,11 +172,6 @@ p {
 @media screen and (max-width: 1024px) {
   .hero {
     padding: 4rem 6%;
-  }
-
-  .hero__media-frame {
-    width: 320px;
-    height: 320px;
   }
 
   .header__socials {
@@ -212,9 +198,16 @@ p {
 /* For mobile devices */
 @media screen and (max-width: 768px) {
   .hero {
-    flex-direction: column-reverse; /* Stack content vertically */
-    gap: 2rem;
-    padding-top: 3rem;
+    padding: 3rem 6%;
+    min-height: 100vh;
+  }
+
+  .hero__content {
+    max-width: 100%;
+  }
+
+  .hero__scrim {
+    background: linear-gradient(to top, rgba(15, 15, 30, 0.95) 0%, rgba(15, 15, 30, 0.55) 55%, rgba(15, 15, 30, 0.25) 100%);
   }
 
   .about__me1 {
@@ -226,14 +219,7 @@ p {
     width: 50%; /* Adjust image width */
     height: auto;
   }
-  .hero__media-frame {
-    width: 220px;
-    height: 220px;
-    margin-top: 1rem;
-  }
-  .hero {
-    padding: 3rem 6%;
-  }
+
   .chat-btn {
     display: none;
   }
@@ -271,11 +257,6 @@ p {
 
   p {
     font-size: 1rem;
-  }
-
-  .hero__media-frame {
-    width: 200px;
-    height: 200px;
   }
 
   .cta {
