@@ -1,12 +1,10 @@
 import { useRef, useState } from "react";
 import CTA from "./CTA";
-import HeroScene from "./HeroScene";
 import "./header.css";
 import profileImage from "../../assets/me11.png";
 import introVideo from "../../assets/intro-video.mp4";
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
-import useIsDesktop from "../common/useIsDesktop";
 import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
 
 import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
@@ -30,7 +28,6 @@ const itemVariants = {
 };
 
 const Header = () => {
-  const isDesktop = useIsDesktop(768);
   const videoRef = useRef(null);
   const [muted, setMuted] = useState(true);
 
@@ -65,7 +62,6 @@ const Header = () => {
         />
       )}
       <div className="hero__scrim" />
-      {isDesktop && <HeroScene />}
 
       {introVideoSrc && (
         <button
@@ -84,15 +80,12 @@ const Header = () => {
         initial="hidden"
         animate="visible"
       >
-        <motion.h1 variants={itemVariants}>Hello, It's Me</motion.h1>
-        <motion.h2
-          className="name"
-          variants={itemVariants}
-          style={{ fontWeight: "bold", fontSize: "40px" }}
-        >
-          {" "}
-          Sajan Kumar Singh{" "}
-        </motion.h2>
+        <motion.span className="hero__eyebrow" variants={itemVariants}>
+          Hello, It's Me
+        </motion.span>
+        <motion.h1 className="hero__name" variants={itemVariants}>
+          Sajan Kumar Singh
+        </motion.h1>
         <motion.div className="hero__role" variants={itemVariants}>
           <Typewriter
             options={{
@@ -110,15 +103,10 @@ const Header = () => {
         </motion.div>
         <motion.p variants={itemVariants}>
           I am a{" "}
-          <span style={{ color: "#00d9d9", fontWeight: "bold" }}>
-            Full Stack Developer
-          </span>{" "}
+          <span className="hero__highlight">Full Stack Developer</span>{" "}
           building enterprise CRM/HRMS platforms and AI-powered products with
-          <br />
           Next.js, React, Node.js and Firebase. I turn complex, real-world
-          workflows into fast,
-          <br />
-          scalable, and user-friendly applications.
+          workflows into fast, scalable, and user-friendly applications.
         </motion.p>
 
         <motion.div variants={itemVariants}>
