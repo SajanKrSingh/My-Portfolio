@@ -3,14 +3,14 @@ import HeroScene from "./HeroScene";
 import IntroMedia from "./IntroMedia";
 import "./header.css";
 import profileImage from "../../assets/me11.png";
+import introVideo from "../../assets/intro-video.mp4";
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
 import useIsDesktop from "../common/useIsDesktop";
 
 import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 
-// Drop your intro video in src/assets and pass its import here to replace the photo.
-const introVideoSrc = null;
+const introVideoSrc = introVideo;
 
 const containerVariants = {
   hidden: {},
