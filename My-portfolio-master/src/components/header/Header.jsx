@@ -36,36 +36,60 @@ const Header = () => {
   const heroRef = useRef(null);
   const videoRef = useRef(null);
 
-  // Try to autoplay with sound; if the browser blocks it, start muted and
-  // unmute on the visitor's first interaction anywhere on the page.
+  // Autoplay with sound where the browser allows it; otherwise start muted
+  // and unmute on the visitor's first interaction (tap/click/key — works on
+  // mobile too). The video only plays while the hero section is on screen.
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const hero = heroRef.current;
+    if (!video || !hero) return;
 
+    let heroVisible = true;
     let cleanup = () => {};
+
+    const armUnmuteOnFirstInteraction = () => {
+      const unmute = () => {
+        video.muted = false;
+        if (heroVisible) video.play().catch(() => {});
+        cleanup();
+        cleanup = () => {};
+      };
+      const events = ["pointerdown", "touchend", "click", "keydown"];
+      events.forEach((ev) =>
+        window.addEventListener(ev, unmute, { passive: true })
+      );
+      cleanup = () =>
+        events.forEach((ev) => window.removeEventListener(ev, unmute));
+    };
+
     video.muted = false;
     const attempt = video.play();
-
     if (attempt && attempt.catch) {
       attempt.catch(() => {
         video.muted = true;
         video.play().catch(() => {});
-
-        const unmute = () => {
-          video.muted = false;
-          video.play().catch(() => {});
-          cleanup();
-        };
-        window.addEventListener("pointerdown", unmute);
-        window.addEventListener("keydown", unmute);
-        cleanup = () => {
-          window.removeEventListener("pointerdown", unmute);
-          window.removeEventListener("keydown", unmute);
-        };
+        armUnmuteOnFirstInteraction();
       });
     }
 
-    return () => cleanup();
+    // Pause the video the moment the hero scrolls out of view; resume on return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        heroVisible = entry.isIntersecting;
+        if (heroVisible) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.18 }
+    );
+    observer.observe(hero);
+
+    return () => {
+      observer.disconnect();
+      cleanup();
+    };
   }, []);
 
   // Scroll parallax: text drifts up, video drifts down, hero fades out
@@ -175,7 +199,7 @@ const Header = () => {
               <FaGithub />
             </a>
             <a
-              href="https://www.linkedin.com/in/sajan-kumar-singh-a59952262/"
+              href="https://www.linkedin.com/in/sajan-kumar-singh/"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"

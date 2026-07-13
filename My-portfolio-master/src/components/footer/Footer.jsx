@@ -71,7 +71,7 @@ const Footer = () => {
           <h4>Connect</h4>
           <div className="footer__socials">
             <a
-              href="https://www.linkedin.com/in/sajan-kumar-singh-a59952262/"
+              href="https://www.linkedin.com/in/sajan-kumar-singh/"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
