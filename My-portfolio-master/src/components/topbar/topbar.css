@@ -1,33 +1,40 @@
-nav {
-  background: rgba(0, 0, 0, 0.3);
-  width: max-content;
-  display: block;
-  padding: 0.7rem 1.7rem;
-  z-index: 2;
+nav.dock {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 2rem;
+  bottom: 1.4rem;
+  z-index: 900;
   display: flex;
-  gap: 0.8rem;
-  border-radius: 3rem;
-  backdrop-filter: blur(15px);
+  gap: 0.55rem;
+  width: max-content;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(10, 10, 22, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
 
-nav a {
-  background: transparent;
-  padding: 0.9rem;
+nav.dock a {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  display: flex;
+  background: transparent;
   color: var(--color-light);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  transition: var(--transition);
 }
 
-nav a:hover {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-nav a.active {
-  background: var(--color-bg);
+nav.dock a:hover {
   color: var(--color-white);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+nav.dock a.active {
+  background: linear-gradient(135deg, #0ea5b7, #22d3ee);
+  color: #04121a;
+  box-shadow: 0 8px 22px rgba(34, 211, 238, 0.4);
 }

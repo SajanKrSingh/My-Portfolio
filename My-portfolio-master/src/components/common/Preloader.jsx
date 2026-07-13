@@ -8,7 +8,7 @@ const Preloader = ({ onComplete }) => {
 
   useEffect(() => {
     const start = Date.now();
-    const duration = 1600;
+    const duration = 1800;
     let raf;
 
     const tick = () => {
@@ -18,7 +18,7 @@ const Preloader = ({ onComplete }) => {
       if (pct < 100) {
         raf = requestAnimationFrame(tick);
       } else {
-        setTimeout(() => setDone(true), 250);
+        setTimeout(() => setDone(true), 300);
       }
     };
 
@@ -28,7 +28,7 @@ const Preloader = ({ onComplete }) => {
 
   useEffect(() => {
     if (!done) return;
-    const timer = setTimeout(onComplete, 650);
+    const timer = setTimeout(onComplete, 850);
     return () => clearTimeout(timer);
   }, [done, onComplete]);
 
@@ -37,27 +37,40 @@ const Preloader = ({ onComplete }) => {
       {!done && (
         <motion.div
           className="preloader"
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
+          exit={{ y: "-100%" }}
+          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
         >
-          <motion.div
-            className="preloader__inner"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -24 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="preloader__name">Sajan Kumar Singh</span>
-            <span className="preloader__role">Full Stack Developer</span>
-            <div className="preloader__bar">
-              <motion.div
-                className="preloader__bar-fill"
-                animate={{ width: `${progress}%` }}
-                transition={{ ease: "linear", duration: 0.15 }}
-              />
-            </div>
-            <span className="preloader__percent">{progress}%</span>
-          </motion.div>
+          <div className="preloader__center">
+            <motion.div
+              className="preloader__name-wrap"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <motion.span
+                className="preloader__name"
+                initial={{ y: "110%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+              >
+                Sajan Kumar Singh
+              </motion.span>
+            </motion.div>
+            <motion.span
+              className="preloader__role"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+            >
+              Full Stack Developer — Portfolio
+            </motion.span>
+          </div>
+
+          <div className="preloader__counter">{progress}</div>
+
+          <div className="preloader__bar">
+            <div className="preloader__bar-fill" style={{ width: `${progress}%` }} />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

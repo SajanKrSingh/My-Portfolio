@@ -10,7 +10,7 @@ import "./topbar.css";
 const Topbar = () => {
   const [activeNav, setActiveNav] = useState("#home");
   return (
-    <nav>
+    <nav className="dock" aria-label="Section navigation">
       <a
         href="#home"
         onClick={() => setActiveNav("#home")}

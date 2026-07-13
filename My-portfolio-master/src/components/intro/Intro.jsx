@@ -1,49 +1,82 @@
 import "./intro.css";
-import { FaAward } from "react-icons/fa";
 import React from "react";
-import { VscFolderLibrary } from "react-icons/vsc";
 import img from "../../assets/Me1.png";
 import TiltCard from "../common/TiltCard";
 import Reveal from "../common/Reveal";
+import StatCounter from "../common/StatCounter";
+import { FaGraduationCap, FaBriefcase } from "react-icons/fa";
+
+const stats = [
+  { value: 1, suffix: "+", label: "Years Experience" },
+  { value: 10, suffix: "+", label: "Projects Built" },
+  { value: 4, suffix: "", label: "Certifications" },
+  { value: 15, suffix: "+", label: "Technologies" },
+];
 
 const Intro = () => {
   return (
     <section id="about">
-      <Reveal as="h5">Get to know</Reveal>
-      <Reveal as="h2" delay={0.1}>About Me</Reveal>
-      <div className="container about__container">
-        <Reveal className="about__me" y={0} delay={0.15}>
-          <TiltCard className="about__me-image" maxTilt={8}>
-            <img src={img} alt="Sajan Kumar Singh" />
-          </TiltCard>
+      <div className="section-head">
+        <Reveal as="span" className="section-tag" y={20}>
+          About Me
         </Reveal>
-        <div className="about__content">
-          <div className="about__cards">
-            <Reveal as="article" className="about__card" delay={0.2}>
-              <FaAward className="about__icon" />
-              <h5>Experience </h5>
-              <small>Jan 2025 - Present</small>
-            </Reveal>
-            <Reveal as="article" className="about__card" delay={0.3}>
-              <VscFolderLibrary className="about__icon" />
-              <h5>Projects</h5>
-              <small>7+ Completed Projects</small>
-            </Reveal>
+        <Reveal as="h2" className="section-title" delay={0.08}>
+          Turning ideas into <span className="gradient-text">products</span>
+        </Reveal>
+      </div>
+
+      <div className="container about__container">
+        <Reveal className="about__visual" y={30} delay={0.1}>
+          <TiltCard className="about__image-frame" maxTilt={7}>
+            <img src={img} alt="Sajan Kumar Singh — Full Stack Developer" />
+          </TiltCard>
+          <div className="about__float-card about__float-card--role glass">
+            <FaBriefcase />
+            <div>
+              <strong>Web Developer</strong>
+              <span>EdiGlobe · Bengaluru</span>
+            </div>
           </div>
-          <Reveal as="p" delay={0.35}>
-            "Hi, I'm Sajan Kumar Singh, a Full Stack Developer specializing in
-            the Next.js / MERN stack. I hold an MCA from Chandigarh University
-            and currently work at EdiGlobe, where I built a full-stack
-            Enterprise CRM &amp; HRMS platform using Next.js 15, Firebase, and
-            Tailwind CSS &mdash; covering lead generation, RBAC authentication,
-            HR attendance, and Razorpay-powered financial workflows. Outside of
-            work, I explore AI-integrated products, from real-time voice
-            assistants to Gemini-powered travel planners, always aiming to
-            ship fast, reliable, and delightful user experiences."
+          <div className="about__float-card about__float-card--edu glass">
+            <FaGraduationCap />
+            <div>
+              <strong>MCA</strong>
+              <span>Chandigarh University</span>
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="about__content">
+          <Reveal as="p" delay={0.15}>
+            Hi, I'm <strong>Sajan Kumar Singh</strong> — a Full Stack Developer
+            specializing in the <strong>Next.js / MERN stack</strong>. At
+            EdiGlobe I engineered a full-scale Enterprise CRM &amp; HRMS
+            platform: a custom lead-generation engine, role-based access
+            control, QR-code attendance, and Razorpay-powered payment
+            workflows — all built on Next.js 15, Firebase and Tailwind CSS.
           </Reveal>
+          <Reveal as="p" delay={0.22}>
+            Beyond work, I ship AI-first products — a real-time voice
+            assistant built on WebSockets and Murf AI, and a Gemini-powered
+            travel planner that cuts trip-planning time by 90%. I care about
+            clean architecture, fast experiences, and details that make
+            software feel effortless.
+          </Reveal>
+
+          <Reveal className="about__stats" delay={0.3} y={26}>
+            {stats.map((stat) => (
+              <div className="about__stat glass" key={stat.label}>
+                <span className="about__stat-value gradient-text">
+                  <StatCounter value={stat.value} suffix={stat.suffix} />
+                </span>
+                <span className="about__stat-label">{stat.label}</span>
+              </div>
+            ))}
+          </Reveal>
+
           <Reveal delay={0.4}>
             <a href="#contact" className="btn btn-primary">
-              Let's Talk
+              Let's Work Together
             </a>
           </Reveal>
         </div>

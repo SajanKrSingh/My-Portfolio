@@ -1,30 +1,38 @@
 import { useRef, useState } from "react";
-import CTA from "./CTA";
 import "./header.css";
 import profileImage from "../../assets/me11.png";
 import introVideo from "../../assets/intro-video.mp4";
 import Typewriter from "typewriter-effect";
 import { motion } from "framer-motion";
-import { FaVolumeMute, FaVolumeUp } from "react-icons/fa";
-
+import Marquee from "../common/Marquee";
+import { FaVolumeMute, FaVolumeUp, FaArrowDown } from "react-icons/fa";
 import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+import CV from "../../assets/Sajan_Kumar_Resume.pdf";
 
 const introVideoSrc = introVideo;
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.16, delayChildren: 0.15 },
-  },
-};
+const nameWords = ["Sajan", "Kumar", "Singh"];
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 36 },
-  visible: {
+const marqueeItems = [
+  "Next.js",
+  "React",
+  "Node.js",
+  "MongoDB",
+  "Firebase",
+  "Tailwind CSS",
+  "FastAPI",
+  "Docker",
+  "AI Integration",
+  "WebSockets",
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  },
+    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1], delay },
+  }),
 };
 
 const Header = () => {
@@ -36,9 +44,7 @@ const Header = () => {
     if (!video) return;
     const next = !muted;
     video.muted = next;
-    if (!next) {
-      video.play().catch(() => {});
-    }
+    if (!next) video.play().catch(() => {});
     setMuted(next);
   };
 
@@ -62,31 +68,46 @@ const Header = () => {
         />
       )}
       <div className="hero__scrim" />
+      <div className="hero__vignette" />
 
-      {introVideoSrc && (
-        <button
-          type="button"
-          className="hero__sound-toggle"
-          onClick={toggleMute}
-          aria-label={muted ? "Unmute intro video" : "Mute intro video"}
+      <div className="hero__inner">
+        <motion.div
+          className="hero__badge"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.1}
         >
-          {muted ? <FaVolumeMute /> : <FaVolumeUp />}
-        </button>
-      )}
+          <span className="hero__badge-dot" />
+          Available for new opportunities
+        </motion.div>
 
-      <motion.div
-        className="hero__content"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.span className="hero__eyebrow" variants={itemVariants}>
-          Hello, It's Me
-        </motion.span>
-        <motion.h1 className="hero__name" variants={itemVariants}>
-          Sajan Kumar Singh
-        </motion.h1>
-        <motion.div className="hero__role" variants={itemVariants}>
+        <h1 className="hero__name" aria-label="Sajan Kumar Singh">
+          {nameWords.map((word, i) => (
+            <span className="hero__name-mask" key={word}>
+              <motion.span
+                className={`hero__name-word ${i === 2 ? "gradient-text" : ""}`}
+                initial={{ y: "112%" }}
+                animate={{ y: 0 }}
+                transition={{
+                  duration: 0.95,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: 0.25 + i * 0.12,
+                }}
+              >
+                {word}
+              </motion.span>
+            </span>
+          ))}
+        </h1>
+
+        <motion.div
+          className="hero__role"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.65}
+        >
           <Typewriter
             options={{
               strings: [
@@ -101,42 +122,97 @@ const Header = () => {
             }}
           />
         </motion.div>
-        <motion.p variants={itemVariants}>
-          I am a{" "}
-          <span className="hero__highlight">Full Stack Developer</span>{" "}
-          building enterprise CRM/HRMS platforms and AI-powered products with
-          Next.js, React, Node.js and Firebase. I turn complex, real-world
-          workflows into fast, scalable, and user-friendly applications.
+
+        <motion.p
+          className="hero__bio"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.8}
+        >
+          I build enterprise CRM/HRMS platforms and AI-powered products with
+          Next.js, React, Node.js and Firebase — turning complex, real-world
+          workflows into fast, scalable, delightful applications.
         </motion.p>
 
-        <motion.div variants={itemVariants}>
-          <CTA />
+        <motion.div
+          className="hero__actions"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.95}
+        >
+          <a href="#portfolio" className="btn btn-primary">
+            View My Work
+          </a>
+          <a href={CV} download className="btn">
+            Download CV
+          </a>
         </motion.div>
-        {/* Social Media Links */}
-        <motion.div className="social-icons" variants={itemVariants}>
-          <a href="https://github.com/SajanKrSingh" alt="Sajan Singh Github">
+
+        <motion.div
+          className="hero__socials"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={1.1}
+        >
+          <a href="https://github.com/SajanKrSingh" target="_blank" rel="noreferrer" aria-label="GitHub">
             <FaGithub />
           </a>
           <a
             href="https://www.linkedin.com/in/sajan-kumar-singh-a59952262/"
-            alt="Sajan Singh Linkedin"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
           >
             <FaLinkedin />
           </a>
           <a
             href="https://www.instagram.com/sajan_kumar_singh__?igsh=eHp5Z29wenc4ZG9u"
-            alt="Sajan Singh Instagram"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
           >
             <FaInstagram />
           </a>
           <a
             href="https://www.facebook.com/profile.php?id=100046117037884&mibextid=ZbWKwL"
-            alt="Sajan Singh Facebook"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Facebook"
           >
             <FaFacebook />
           </a>
         </motion.div>
-      </motion.div>
+      </div>
+
+      {introVideoSrc && (
+        <button
+          type="button"
+          className="hero__sound-toggle"
+          onClick={toggleMute}
+          aria-label={muted ? "Unmute intro video" : "Mute intro video"}
+        >
+          {muted ? <FaVolumeMute /> : <FaVolumeUp />}
+          <span>{muted ? "Unmute intro" : "Mute"}</span>
+        </button>
+      )}
+
+      <motion.a
+        href="#about"
+        className="hero__scroll"
+        aria-label="Scroll to about section"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.8 }}
+      >
+        <FaArrowDown />
+      </motion.a>
+
+      <div className="hero__marquee">
+        <Marquee items={marqueeItems} />
+      </div>
     </section>
   );
 };

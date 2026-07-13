@@ -1,143 +1,140 @@
 import React from "react";
-import { BsFillPatchCheckFill } from "react-icons/bs";
-import { FaAward } from "react-icons/fa";
+import {
+  SiJavascript,
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiFirebase,
+  SiTailwindcss,
+  SiRedux,
+  SiPython,
+  SiDocker,
+  SiGit,
+  SiFastapi,
+  SiRazorpay,
+  SiBootstrap,
+  SiMysql,
+} from "react-icons/si";
+import { FaJava, FaAward } from "react-icons/fa";
 import "./experience.css";
-import TiltCard from "../common/TiltCard";
 import Reveal from "../common/Reveal";
 
-const skillCategories = [
-  {
-    title: "Languages",
-    skills: ["JavaScript (ES6+)", "Java", "Python", "SQL", "HTML5", "CSS3"],
-  },
-  {
-    title: "Frontend",
-    skills: [
-      "Next.js 15 (App Router)",
-      "React.js",
-      "Tailwind CSS",
-      "Redux",
-      "Bootstrap",
-      "Framer Motion",
-    ],
-  },
-  {
-    title: "Backend",
-    skills: [
-      "Node.js",
-      "Express.js",
-      "FastAPI",
-      "Firebase (Auth/Firestore)",
-      "MongoDB",
-      "WebSockets",
-    ],
-  },
-  {
-    title: "Tools & DevOps",
-    skills: [
-      "Docker",
-      "Render",
-      "Git / GitHub",
-      "Postman",
-      "Razorpay API",
-      "NodeMailer",
-      "Murf.ai",
-    ],
-  },
+const skills = [
+  { name: "JavaScript", icon: <SiJavascript /> },
+  { name: "React.js", icon: <SiReact /> },
+  { name: "Next.js 15", icon: <SiNextdotjs /> },
+  { name: "Node.js", icon: <SiNodedotjs /> },
+  { name: "Express.js", icon: <SiExpress /> },
+  { name: "MongoDB", icon: <SiMongodb /> },
+  { name: "Firebase", icon: <SiFirebase /> },
+  { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+  { name: "Redux", icon: <SiRedux /> },
+  { name: "Python", icon: <SiPython /> },
+  { name: "FastAPI", icon: <SiFastapi /> },
+  { name: "Docker", icon: <SiDocker /> },
+  { name: "Git / GitHub", icon: <SiGit /> },
+  { name: "Java", icon: <FaJava /> },
+  { name: "SQL", icon: <SiMysql /> },
+  { name: "Razorpay API", icon: <SiRazorpay /> },
+  { name: "Bootstrap", icon: <SiBootstrap /> },
 ];
 
 const workHighlights = [
   {
     heading: "Custom Lead Generation Engine",
     details:
-      "Built a dynamic system generating public student registration pages with Smart Auto-Assignment routing and real-time \"Thank You\" email + webhook triggers, replacing static Google Forms.",
+      "Dynamic public registration pages with smart auto-assignment routing, real-time email triggers and webhook-driven dashboards — replacing Google Forms entirely.",
   },
   {
-    heading: "Advanced Authentication & Onboarding",
+    heading: "Authentication & Onboarding",
     details:
-      "Built a Superadmin tool for staff onboarding into Firebase Auth, automated credential delivery via NodeMailer, and engineered strict RBAC middleware across Superadmin, HR, Sales, and Candidate dashboards.",
+      "Superadmin tooling on Firebase Auth with automated credential delivery (NodeMailer) and strict RBAC across Superadmin, HR, Sales and Candidate dashboards.",
   },
   {
-    heading: "HR Employee Management",
+    heading: "HR Management Module",
     details:
-      "Developed a QR-code based Digital Attendance system and a centralized Employee Repository for documents and performance tracking.",
+      "QR-code based digital attendance and a centralized employee repository for documents and performance tracking.",
   },
   {
-    heading: "Sales CRM & Financial Integration",
+    heading: "Sales CRM & Payments",
     details:
-      "Integrated Razorpay for a custom payment link generator, built a Kanban-style lead pipeline with bulk transfer, and shipped a Recharts-powered Analytics Command Center.",
+      "Razorpay payment-link generator, Kanban lead pipeline with bulk transfer, and a Recharts analytics command center for management.",
   },
 ];
 
 const certifications = [
-  "30 Days of AI Voice Agents Challenge - Murf.ai",
-  "Full Stack Web Development - PW Skills",
-  "Data Structures & Algorithms in Java - Coding Ninjas",
-  "Frontend & Backend Development - Coding Ninjas",
+  "30 Days of AI Voice Agents Challenge — Murf.ai",
+  "Full Stack Web Development — PW Skills",
+  "Data Structures & Algorithms in Java — Coding Ninjas",
+  "Frontend & Backend Development — Coding Ninjas",
 ];
 
 const Experience = () => {
   return (
     <section id="experience">
-      <Reveal as="h5">The Skills I Have</Reveal>
-      <Reveal as="h2" delay={0.1}>My Experience</Reveal>
+      <div className="section-head">
+        <Reveal as="span" className="section-tag" y={20}>
+          Skills & Experience
+        </Reveal>
+        <Reveal as="h2" className="section-title" delay={0.08}>
+          My technical <span className="gradient-text">arsenal</span>
+        </Reveal>
+      </div>
 
       <div className="container experience__container">
-        <div className="experience__grid">
-          {skillCategories.map((category, index) => (
-            <Reveal key={category.title} delay={index * 0.1}>
-              <TiltCard className="experience__frontend" maxTilt={6}>
-                <h3>{category.title}</h3>
-                <div className="experience__content">
-                  {category.skills.map((skill) => (
-                    <article className="experience__details" key={skill}>
-                      <BsFillPatchCheckFill className="experience__details-icon" />
-                      <h4>{skill}</h4>
-                    </article>
-                  ))}
-                </div>
-              </TiltCard>
+        <div className="skills__grid">
+          {skills.map((skill, index) => (
+            <Reveal key={skill.name} delay={(index % 6) * 0.05} y={22}>
+              <div className="skill-chip glass">
+                <span className="skill-chip__icon">{skill.icon}</span>
+                <span className="skill-chip__name">{skill.name}</span>
+              </div>
             </Reveal>
           ))}
         </div>
 
         <div className="work-history">
-          <Reveal as="h3">Work Experience</Reveal>
-          <Reveal className="work-history__role" delay={0.1}>
-            <div className="work-history__role-header">
-              <h4>Web Developer (Next.js &amp; MERN Stack)</h4>
-              <span>Jan 2025 - Present</span>
+          <Reveal className="work-history__card glass" y={34}>
+            <div className="work-history__timeline" />
+            <div className="work-history__header">
+              <div>
+                <h3>Web Developer — Next.js &amp; MERN</h3>
+                <p className="work-history__company">EdiGlobe · Bengaluru</p>
+              </div>
+              <span className="work-history__period">Jan 2025 — Present</span>
             </div>
-            <p className="work-history__company">EdiGlobe &middot; Bengaluru</p>
             <p className="work-history__overview">
-              Developed a full-stack Enterprise CRM &amp; HRMS solution to
-              automate the entire business lifecycle, replacing manual Google
-              Forms with a custom "Lead Gen Engine" built on Next.js 15,
-              Firebase, and Tailwind CSS.
+              Built a full-stack Enterprise CRM &amp; HRMS platform automating
+              the complete business lifecycle on Next.js 15, Firebase and
+              Tailwind CSS.
             </p>
             <div className="work-history__highlights">
               {workHighlights.map((item, index) => (
-                <Reveal key={item.heading} delay={index * 0.08}>
-                  <TiltCard className="work-history__card" maxTilt={5}>
-                    <h5>{item.heading}</h5>
+                <Reveal key={item.heading} delay={index * 0.08} y={20}>
+                  <div className="work-highlight">
+                    <h4>{item.heading}</h4>
                     <p>{item.details}</p>
-                  </TiltCard>
+                  </div>
                 </Reveal>
               ))}
             </div>
           </Reveal>
         </div>
 
-        <div className="certifications">
-          <Reveal as="h3">Certifications</Reveal>
-          <ul className="certifications__list">
+        <div className="certs">
+          <Reveal as="h3" className="certs__title">
+            Certifications
+          </Reveal>
+          <div className="certs__grid">
             {certifications.map((cert, index) => (
-              <Reveal as="li" key={cert} delay={index * 0.08} y={20}>
-                <FaAward className="experience__details-icon" />
+              <Reveal as="div" className="cert-card glass" key={cert} delay={index * 0.07} y={20}>
+                <FaAward />
                 <span>{cert}</span>
               </Reveal>
             ))}
-          </ul>
+          </div>
         </div>
       </div>
     </section>

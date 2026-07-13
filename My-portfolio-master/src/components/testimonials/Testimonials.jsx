@@ -1,79 +1,100 @@
-import React from 'react';
-import { BsLinkedin } from 'react-icons/bs';
-import { Pagination } from 'swiper';
+import React from "react";
+import { BsLinkedin } from "react-icons/bs";
+import { FaQuoteLeft } from "react-icons/fa";
+import { Pagination, Autoplay } from "swiper";
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import './testimonials.css';
+import "swiper/css";
+import "swiper/css/pagination";
+import "./testimonials.css";
+import Reveal from "../common/Reveal";
+
+const testimonials = [
+  {
+    id: 1,
+    link: "https://www.linkedin.com/in/niteshkr3308/",
+    name: "Nitesh King Paul",
+    role: "Cyber Security Engineer",
+    test: "As a developer and a problem solver, Sajan is a great collaborative partner to have. Since we met on JavaScript & React projects he has drastically progressed in his understanding of the development process, and he always keeps a professional environment.",
+  },
+  {
+    id: 2,
+    link: "https://www.linkedin.com/in/sahilkulria19/",
+    name: "Sahil Kulria",
+    role: "Software Engineer",
+    test: "Working with Sajan has been an absolute pleasure. His ability to adapt and solve problems efficiently sets him apart. He is always eager to learn and improve, making him a valuable team player.",
+  },
+  {
+    id: 3,
+    link: "https://www.linkedin.com/in/rajnish-kumar-808604219/",
+    name: "Rajnish Kumar",
+    role: "Full Stack Developer",
+    test: "Sajan's dedication and enthusiasm for technology are truly inspiring. His contributions to our projects were always well-thought-out and innovative. I highly recommend him for any development team.",
+  },
+  {
+    id: 4,
+    link: "https://www.linkedin.com/in/banty-kumar-792856301/",
+    name: "Banty Kumar",
+    role: "Data Scientist",
+    test: "Sajan is a quick learner with a knack for tackling complex problems with ease. His insights during our machine learning collaboration were invaluable — structured approach, great attention to detail.",
+  },
+  {
+    id: 5,
+    link: "https://www.linkedin.com/in/ankit7002/",
+    name: "Ankit Kumar",
+    role: "UI/UX Designer",
+    test: "Collaborating with Sajan was fantastic. His front-end expertise complemented my designs and together we shipped visually stunning, user-friendly interfaces. A talented and dedicated developer.",
+  },
+];
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      id: 1,
-      link: 'https://www.linkedin.com/in/niteshkr3308/',
-      name: 'Nitesh King Paul',
-      role: 'Cyber Security Engineer . Improving open-source projects, one commit at a time.',
-      test: 'As a developer and a problem solver, I think sajan is a great collaborative partner to have. I met sajan in some basic javascript & react projects and since then he has drastically progressed in him understanding of the development process. He always has a professional environment and has good audio and video quality which makes it easier to communicate with him.',
-    },
-    {
-      id: 2,
-    link: 'https://www.linkedin.com/in/sahilkulria19/',
-    name: 'Sahil kulria',
-    role: 'Software Engineer at XYZ Corp.',
-    test: 'Working with Sajan has been an absolute pleasure. His ability to adapt and solve problems efficiently sets him apart from others. Sajan is always eager to learn and improve, making him a valuable team player.',
-    },
-    {
-      id: 3,
-      link: 'https://www.linkedin.com/in/rajnish-kumar-808604219/',
-      name: 'Rajnish Kumar',
-      role: 'Full Stack Developer at ABC Inc.',
-      test: 'Sajan’s dedication and enthusiasm for technology are truly inspiring. His contributions to our projects were always well-thought-out and innovative. I highly recommend him for any development team.',
-    },
-    {
-      id: 4,
-      link: 'https://www.linkedin.com/in/banty-kumar-792856301/',
-      name: 'Banty Kumar',
-      role: 'Data Scientist at TechInsights Ltd.',
-      test: 'Sajan is a quick learner and has a knack for tackling complex problems with ease. His insights during our collaboration on a machine learning project were invaluable. I appreciate his structured approach and attention to detail.',
-    },
-    {
-      id: 5,
-      link: 'https://www.linkedin.com/in/ankit7002/',
-      name: 'Ankit Kumar',
-      role: 'UI/UX Designer at Creative Minds Co.',
-    test: 'Collaborating with Sajan was a fantastic experience. His understanding of front-end development complemented my, and we worked together to create visually stunning and user-friendly interfaces. Sajan is a talented and dedicated developer, and I look forward to working with him again in the future.',
-    },
-  ];
   return (
-    <section id="testmonials">
-      <h5>Feedback from my peers</h5>
-      <h2>Testimonials</h2>
-      <Swiper 
-        className="container testimonials__container"
-        modules={[Pagination]}
-        spaceBetween={40}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-        >
-        {testimonials.map((test) => (
-          <SwiperSlide className="testimonial" key={test.id}>
-          <div className="client__avatar">
-            <a href={test.link}>
-              <BsLinkedin />
-            </a>
-          </div>
-          <h5 className='client__name'>{test.name}</h5>
-          <small className="client__review">{test.test}</small>
-        </SwiperSlide>
-        ))}
-      </Swiper>
-    </section>
-  )
-}
+    <section id="testimonials">
+      <div className="section-head">
+        <Reveal as="span" className="section-tag" y={20}>
+          Testimonials
+        </Reveal>
+        <Reveal as="h2" className="section-title" delay={0.08}>
+          What people <span className="gradient-text">say</span>
+        </Reveal>
+      </div>
 
-export default Testimonials
+      <Reveal y={30}>
+        <Swiper
+          className="container testimonials__container"
+          modules={[Pagination, Autoplay]}
+          spaceBetween={40}
+          slidesPerView={1}
+          autoplay={{ delay: 4500, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+        >
+          {testimonials.map((item) => (
+            <SwiperSlide className="testimonial glass" key={item.id}>
+              <FaQuoteLeft className="testimonial__quote" />
+              <p className="client__review">{item.test}</p>
+              <div className="testimonial__footer">
+                <div>
+                  <h5 className="client__name">{item.name}</h5>
+                  <span className="client__role">{item.role}</span>
+                </div>
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="client__link"
+                  aria-label={`${item.name} on LinkedIn`}
+                >
+                  <BsLinkedin />
+                </a>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Reveal>
+    </section>
+  );
+};
+
+export default Testimonials;

@@ -2,50 +2,80 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-    display: grid;
-    place-items: center;
-    background: radial-gradient(circle at 50% 40%, #24244a 0%, #1f1f38 55%, #16162c 100%);
+    background: #06060f;
+    overflow: hidden;
 }
 
-.preloader__inner {
+.preloader::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 40% at 50% 45%, rgba(34, 211, 238, 0.08), transparent 65%);
+}
+
+.preloader__center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
+    text-align: center;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.preloader__name-wrap {
+    overflow: hidden;
 }
 
 .preloader__name {
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--color-white);
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(92deg, #f4f6fb 30%, #22d3ee 70%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .preloader__role {
-    font-size: 0.9rem;
-    color: var(--color-primary);
-    letter-spacing: 0.08em;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    margin-bottom: 1rem;
+    color: var(--color-light);
+}
+
+.preloader__counter {
+    position: absolute;
+    bottom: 2.4rem;
+    right: 3rem;
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(244, 246, 251, 0.16);
+    letter-spacing: -0.03em;
 }
 
 .preloader__bar {
-    width: 260px;
-    max-width: 60vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     height: 3px;
-    border-radius: 2px;
-    background: rgba(255, 255, 255, 0.12);
-    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .preloader__bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #00d9d9, #4db5ff);
-    border-radius: 2px;
-}
-
-.preloader__percent {
-    font-size: 0.8rem;
-    color: var(--color-light);
-    letter-spacing: 0.05em;
+    background: linear-gradient(90deg, #22d3ee, #a78bfa);
+    transition: width 120ms linear;
 }

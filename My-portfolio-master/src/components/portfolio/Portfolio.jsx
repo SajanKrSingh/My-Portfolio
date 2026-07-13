@@ -1,157 +1,188 @@
 import "./portfolio.css";
 
-// import IMG1 from "../../assets/Educational Website.jpg";
-// import IMG2 from "../../assets/reservation-form.png";
-// import IMG3 from "../../assets/Startup Agency Project.jpg";
-// import IMG4 from "../../assets/fh-huquq.png";
-// import IMG5 from "../../assets/Jokes Project.jpg";
-// import IMG6 from "../../assets/Project4.jpg";
-
-import IMG1 from "../../assets/project/lms.png";
-import IMG2 from "../../assets/fh-huquq.png";
-import IMG3 from "../../assets/project/login.png";
-import IMG4 from "../../assets/project/portfolio1.png";
-import IMG5 from "../../assets/project/imgEditor.png";
-import IMG6 from "../../assets/project/covid.png";
-import IMG7 from "../../assets/project/DestinPath.png";
+import IMG_LMS from "../../assets/project/lms.png";
+import IMG_HOSPITAL from "../../assets/fh-huquq.png";
+import IMG_LOGIN from "../../assets/project/login.png";
+import IMG_PORTFOLIO from "../../assets/project/portfolio1.png";
+import IMG_EDITOR from "../../assets/project/imgEditor.png";
+import IMG_COVID from "../../assets/project/covid.png";
+import IMG_DESTIN from "../../assets/project/DestinPath.png";
 
 import React from "react";
-import { FaMicrophoneAlt } from "react-icons/fa";
-import TiltCard from "../common/TiltCard";
+import { FaMicrophoneAlt, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import Reveal from "../common/Reveal";
+import TiltCard from "../common/TiltCard";
 
-//Portfolio function
+const featured = [
+  {
+    id: 1,
+    title: "Zarex — Real-time AI Voice Assistant",
+    icon: <FaMicrophoneAlt />,
+    description:
+      "Cloud-native conversational AI integrating Murf AI (TTS), Google Gemini (LLM) and AssemblyAI (STT) over WebSockets — with switchable personas, live web search and Docker deployment on Render.",
+    tags: ["Python", "FastAPI", "WebSockets", "Docker", "Murf.ai"],
+    link: "https://github.com/SajanKrSingh",
+    github: "https://github.com/SajanKrSingh",
+  },
+  {
+    id: 2,
+    title: "DestinPath.AI — Travel Planner",
+    img: IMG_DESTIN,
+    description:
+      "AI-driven itinerary generator on Google Gemini + Places APIs producing personalized day-by-day trip plans — cutting planning time by 90%, with Firebase auth and real-time sync.",
+    tags: ["React.js", "Firebase", "Gemini AI"],
+    link: "https://destinpath-ai.vercel.app/",
+    github: "https://destinpath-ai.vercel.app/",
+  },
+  {
+    id: 3,
+    title: "Smart Learning Management System",
+    img: IMG_LMS,
+    description:
+      "Scalable LMS with instructor & student dashboards, Razorpay payments with webhook auto-enrollment, secure media uploads and Redux Toolkit state — cutting redundant API calls by 30%.",
+    tags: ["MongoDB", "Express", "React", "Node.js", "Razorpay"],
+    link: "https://learning-mangement-system-app.vercel.app/",
+    github: "https://github.com/SajanKrSingh/LMS",
+  },
+  {
+    id: 4,
+    title: "Hospital Management API",
+    img: IMG_HOSPITAL,
+    description:
+      "Robust RESTful backend modeling doctors, patients and medical reports with JWT stateless auth, bcrypt hashing and indexed MongoDB schemas for high-volume workloads.",
+    tags: ["Node.js", "Express", "MongoDB", "JWT"],
+    link: "https://github.com/SajanKrSingh/Hospital-api-....",
+    github: "https://github.com/SajanKrSingh/Hospital-api-....",
+  },
+];
+
+const moreProjects = [
+  {
+    id: 5,
+    title: "Login & Signup System",
+    img: IMG_LOGIN,
+    tags: ["HTML", "CSS", "JavaScript", "Sass"],
+    link: "https://sajankrsingh.github.io/SignUp-and-SignIn/",
+    github: "https://github.com/SajanKrSingh/SignUp-and-SignIn",
+  },
+  {
+    id: 6,
+    title: "Portfolio v1",
+    img: IMG_PORTFOLIO,
+    tags: ["HTML", "CSS", "Bootstrap"],
+    link: "https://sajankrsingh.github.io/Portfolio/",
+    github: "https://github.com/SajanKrSingh/Portfolio",
+  },
+  {
+    id: 7,
+    title: "Image Editor",
+    img: IMG_EDITOR,
+    tags: ["JavaScript", "CSS"],
+    link: "https://sajankrsingh.github.io/Image-Editor/",
+    github: "https://github.com/SajanKrSingh/Image-Editor",
+  },
+  {
+    id: 8,
+    title: "Covid-19 India Dashboard",
+    img: IMG_COVID,
+    tags: ["Tableau"],
+    link: "https://github.com/SajanKrSingh/Covid-19_in-_india_dashboard",
+    github: "https://github.com/SajanKrSingh/Covid-19_in-_india_dashboard",
+  },
+];
+
 const Portfolio = () => {
-  const soloProjects = [
-    {
-      id: 1,
-      title: "Zarex - AI Voice Assistant",
-      icon: <FaMicrophoneAlt />,
-      featured: true,
-      description:
-        "A real-time, cloud-native conversational AI assistant integrating Murf AI (TTS), Google Gemini (LLM), and AssemblyAI (STT) over WebSockets with switchable AI personas, containerized with Docker.",
-      technologies: "Python | FastAPI | Docker | WebSockets | Murf.ai",
-      link: "https://github.com/SajanKrSingh",
-      github: "https://github.com/SajanKrSingh",
-    },
-    {
-      id: 2,
-      title: "DestinPath.Ai",
-      img: IMG7,
-      featured: true,
-      description:
-        "An AI-driven travel itinerary generator integrating Google Gemini and Google Places APIs to create fully personalized, day-by-day trip plans, achieving a 90% reduction in planning time.",
-      technologies: "React.js | Firebase | Gemini AI",
-      link: "https://destinpath-ai.vercel.app/",
-      github: "https://destinpath-ai.vercel.app/",
-    },
-    {
-      id: 3,
-      title: "Smart Learning Management System",
-      img: IMG1,
-      featured: true,
-      description:
-        "A scalable LMS with distinct Instructor and Student dashboards, Razorpay payments with webhook-based auto-enrollment, Multer file handling, and Redux Toolkit state management.",
-      technologies: "MongoDB | Express.js | React.js | Node.js | Redux",
-      link: "https://learning-mangement-system-app.vercel.app/",
-      github: "https://github.com/SajanKrSingh/LMS",
-    },
-    {
-      id: 4,
-      title: "Hospital Management API",
-      img: IMG2,
-      featured: true,
-      description:
-        "A RESTful API handling complex relationships between Doctors, Patients, and Medical Reports, secured with JWT authentication and bcrypt password hashing.",
-      technologies: "Node.js | Express.js | MongoDB | JWT",
-      link: "https://github.com/SajanKrSingh/Hospital-api-....",
-      github: "https://github.com/SajanKrSingh/Hospital-api-....",
-    },
-    {
-      id: 5,
-      title: "Login and Signup Page",
-      img: IMG3,
-      description:
-        "The login and signup API enables secure user authentication, allowing users to create accounts and log in with ease.",
-      technologies: "HTML | CSS | JavaScript | sass",
-      link: "https://github.com/SajanKrSingh/SignUp-and-SignIn",
-      github: "https://sajankrsingh.github.io/SignUp-and-SignIn/",
-    },
-    {
-      id: 6,
-      title: "Portfolio",
-      img: IMG4,
-      description:
-        "I built a responsive portfolio using HTML, CSS, Sass, JavaScript, and Bootstrap, with a modern design and interactive features.",
-      technologies: "Html | CSS | JavaScript | Bootstrap",
-      link: "https://sajankrsingh.github.io/Portfolio/",
-      github: "https://github.com/SajanKrSingh/Portfolio",
-    },
-    {
-      id: 7,
-      title: "Image Editor",
-      img: IMG5,
-      description:
-        " I built using HTML, CSS, JavaScript, and Bootstrap: a user-friendly image editor with features like cropping, filtering, and resizing.",
-      technologies: "Html | css | JavaScript",
-      link: "https://sajankrsingh.github.io/Image-Editor/",
-      github: "https://github.com/SajanKrSingh/Image-Editor",
-    },
-    {
-      id: 8,
-      title: "Covid-19_in-_india_dashboard ",
-      img: IMG6,
-      description:
-        "I built using Tableau: a Covid-19 India Dashboard that provides real-time data visualization on cases, recoveries, and vaccinations across India.",
-      technologies: "Tableau",
-      link: "https://github.com/SajanKrSingh/Covid-19_in-_india_dashboard",
-      github: "https://github.com/SajanKrSingh/Covid-19_in-_india_dashboard",
-    },
-  ];
-
   return (
     <section id="portfolio">
-      <Reveal as="h5">My Recent Work</Reveal>
-      <Reveal as="h2" delay={0.1}>Portfolio</Reveal>
+      <div className="section-head">
+        <Reveal as="span" className="section-tag" y={20}>
+          Portfolio
+        </Reveal>
+        <Reveal as="h2" className="section-title" delay={0.08}>
+          Selected <span className="gradient-text">works</span>
+        </Reveal>
+      </div>
 
-      <div className="container portfolio__container">
-        {soloProjects.map((pro, index) => (
-          <Reveal key={pro.id} delay={(index % 3) * 0.1}>
-            <TiltCard className="portfolio__item" maxTilt={7}>
-              {pro.featured && <span className="portfolio__badge">Featured</span>}
-              <div className="portfolio__item-image">
-                {pro.img ? (
-                  <img src={pro.img} alt={pro.title} />
-                ) : (
-                  <div className="portfolio__item-icon">{pro.icon}</div>
-                )}
+      <div className="container works">
+        {featured.map((project, index) => (
+          <Reveal key={project.id} y={44}>
+            <article className={`work ${index % 2 === 1 ? "work--flip" : ""}`}>
+              <div className="work__media">
+                <div className="work__media-inner">
+                  {project.img ? (
+                    <img src={project.img} alt={project.title} loading="lazy" />
+                  ) : (
+                    <div className="work__media-icon">{project.icon}</div>
+                  )}
+                </div>
               </div>
-              <div className="portfolio__item-content">
-                <h3>{pro.title}</h3>
-                <p>{pro.description}</p>
-                <p>{pro.technologies}</p>
+
+              <div className="work__info">
+                <span className="work__number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="work__title">{project.title}</h3>
+                <p className="work__desc glass">{project.description}</p>
+                <ul className="work__tags">
+                  {project.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+                <div className="work__links">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${project.title} on GitHub`}
+                  >
+                    <FaGithub /> Code
+                  </a>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${project.title} live demo`}
+                  >
+                    <FaExternalLinkAlt /> Live Demo
+                  </a>
+                </div>
               </div>
-              <div className="portfolio__item-cta">
-                <a
-                  href={pro.github}
-                  target="_blank"
-                  className="btn"
-                  rel="noreferrer"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={pro.link}
-                  target="_blank"
-                  className="btn btn-primary"
-                  rel="noreferrer"
-                >
-                  Live Demo
-                </a>
-              </div>
-            </TiltCard>
+            </article>
           </Reveal>
         ))}
+      </div>
+
+      <div className="container more-works">
+        <Reveal as="h3" className="more-works__title">
+          More Projects
+        </Reveal>
+        <div className="more-works__grid">
+          {moreProjects.map((project, index) => (
+            <Reveal key={project.id} delay={(index % 4) * 0.08} y={26}>
+              <TiltCard className="mini-work glass" maxTilt={6}>
+                <div className="mini-work__image">
+                  <img src={project.img} alt={project.title} loading="lazy" />
+                </div>
+                <div className="mini-work__body">
+                  <h4>{project.title}</h4>
+                  <ul className="work__tags">
+                    {project.tags.map((tag) => (
+                      <li key={tag}>{tag}</li>
+                    ))}
+                  </ul>
+                  <div className="work__links mini-work__links">
+                    <a href={project.github} target="_blank" rel="noreferrer">
+                      <FaGithub /> Code
+                    </a>
+                    <a href={project.link} target="_blank" rel="noreferrer">
+                      <FaExternalLinkAlt /> Live
+                    </a>
+                  </div>
+                </div>
+              </TiltCard>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
