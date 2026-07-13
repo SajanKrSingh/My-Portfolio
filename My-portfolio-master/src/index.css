@@ -218,6 +218,25 @@ a:hover {
   border: 1px solid var(--color-border);
   background: rgba(255, 255, 255, 0.03);
   transition: var(--transition);
+  overflow: hidden;
+}
+
+/* Shine sweep on hover */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  left: 130%;
 }
 
 .btn:hover {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import logo from "../../assets/myLogo.png";
 import "./navbar.css";
 
 const links = [
@@ -29,7 +30,7 @@ const Navbar = () => {
     >
       <nav className="navbar__inner">
         <a href="#home" className="navbar__logo" aria-label="Sajan Kumar Singh — home">
-          Sajan<span>.</span>
+          <img src={logo} alt="Sajan — Full Stack Developer" />
         </a>
 
         <ul className="navbar__links">

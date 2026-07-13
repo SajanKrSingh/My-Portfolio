@@ -11,6 +11,8 @@ import Topbar from "./components/topbar/Topbar";
 import Navbar from "./components/navbar/Navbar";
 import Preloader from "./components/common/Preloader";
 import ParticleField from "./components/common/ParticleField";
+import CursorGlow from "./components/common/CursorGlow";
+import ScrollProgress from "./components/common/ScrollProgress";
 import useIsDesktop from "./components/common/useIsDesktop";
 
 const App = () => {
@@ -54,6 +56,8 @@ const App = () => {
             {isDesktop && <ParticleField />}
           </div>
 
+          <ScrollProgress />
+          {isDesktop && <CursorGlow />}
           <Navbar />
           <main className="site-content">
             <Header />
