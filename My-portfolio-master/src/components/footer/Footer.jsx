@@ -10,6 +10,10 @@ const Footer = () => {
 
   return (
     <footer className="footer">
+      <span className="footer__watermark" aria-hidden="true">
+        SAJAN
+      </span>
+
       {/* Big CTA block */}
       <div className="container footer__cta">
         <Reveal as="h2" className="footer__cta-title">

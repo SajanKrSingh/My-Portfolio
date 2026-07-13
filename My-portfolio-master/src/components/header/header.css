@@ -67,7 +67,7 @@
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
-  gap: 3rem;
+  gap: 4rem;
   padding: 7.5rem 0 8rem;
 }
 
@@ -236,8 +236,22 @@
   object-fit: cover;
   object-position: center 18%;
   /* soft-fade every edge into the background — no card boundary */
-  mask-image: radial-gradient(ellipse 92% 90% at 50% 46%, black 58%, transparent 88%);
-  -webkit-mask-image: radial-gradient(ellipse 92% 90% at 50% 46%, black 58%, transparent 88%);
+  mask-image: radial-gradient(ellipse 96% 94% at 50% 46%, black 52%, transparent 92%);
+  -webkit-mask-image: radial-gradient(ellipse 96% 94% at 50% 46%, black 52%, transparent 92%);
+}
+
+/* Overlay that melts all four edges into the page background */
+.hero__media-overlay {
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 72% 70% at 50% 46%,
+    transparent 38%,
+    rgba(6, 6, 15, 0.35) 62%,
+    rgba(6, 6, 15, 0.78) 80%,
+    #06060f 96%
+  );
 }
 
 /* Scroll indicator */

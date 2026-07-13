@@ -1,8 +1,8 @@
 import "./header.css";
-import profileImage from "../../assets/me11.png";
+import { useEffect, useRef } from "react";
 import introVideo from "../../assets/intro-video.mp4";
 import Typewriter from "typewriter-effect";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Marquee from "../common/Marquee";
 import { FaArrowDown } from "react-icons/fa";
 import { FaGithub, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
@@ -33,14 +33,58 @@ const fadeUp = {
 };
 
 const Header = () => {
+  const heroRef = useRef(null);
+  const videoRef = useRef(null);
+
+  // Try to autoplay with sound; if the browser blocks it, start muted and
+  // unmute on the visitor's first interaction anywhere on the page.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let cleanup = () => {};
+    video.muted = false;
+    const attempt = video.play();
+
+    if (attempt && attempt.catch) {
+      attempt.catch(() => {
+        video.muted = true;
+        video.play().catch(() => {});
+
+        const unmute = () => {
+          video.muted = false;
+          video.play().catch(() => {});
+          cleanup();
+        };
+        window.addEventListener("pointerdown", unmute);
+        window.addEventListener("keydown", unmute);
+        cleanup = () => {
+          window.removeEventListener("pointerdown", unmute);
+          window.removeEventListener("keydown", unmute);
+        };
+      });
+    }
+
+    return () => cleanup();
+  }, []);
+
+  // Scroll parallax: text drifts up, video drifts down, hero fades out
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -130]);
+  const mediaY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.1]);
+
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero" ref={heroRef}>
       {/* Motion graphics: drifting gradient orbs */}
       <div className="hero__orb hero__orb--1" aria-hidden="true" />
       <div className="hero__orb hero__orb--2" aria-hidden="true" />
 
-      <div className="hero__inner">
-        <div className="hero__text">
+      <motion.div className="hero__inner" style={{ opacity: heroOpacity }}>
+        <motion.div className="hero__text" style={{ y: textY }}>
           <motion.div
             className="hero__badge"
             variants={fadeUp}
@@ -155,26 +199,27 @@ const Header = () => {
               <FaFacebook />
             </a>
           </motion.div>
-        </div>
+        </motion.div>
 
         <motion.div
           className="hero__media"
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
+          style={{ y: mediaY }}
         >
           <div className="hero__media-glow" aria-hidden="true" />
           <video
+            ref={videoRef}
             className="hero__video"
             src={introVideo}
-            poster={profileImage}
             autoPlay
             loop
-            muted
             playsInline
           />
+          <div className="hero__media-overlay" aria-hidden="true" />
         </motion.div>
-      </div>
+      </motion.div>
 
       <motion.a
         href="#about"
