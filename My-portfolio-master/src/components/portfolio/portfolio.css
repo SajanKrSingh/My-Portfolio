@@ -1,3 +1,9 @@
+/* Clip decorative orbs/auras at the section edge (no sticky lives here,
+   so plain overflow hidden is safe even in old browsers) */
+#portfolio {
+    overflow: hidden;
+}
+
 /* Ambient motion-graphics orbs */
 .portfolio__orb {
     position: absolute;

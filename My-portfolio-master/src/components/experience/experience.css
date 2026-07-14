@@ -8,20 +8,24 @@
 .skills-stack {
     display: flex;
     flex-direction: column;
-    gap: 34vh;
-    padding-bottom: 8vh;
+    /* ~3/4 viewport of travel per card: the pinned card visibly waits while
+       the next one rides the whole screen up to cover it — even on a fast
+       phone flick the cover animation can't be missed */
+    gap: 72vh;
+    padding-bottom: 10vh;
 }
 
 .skills-stack__card {
     position: sticky;
     top: 6.5rem;
     min-height: 260px;
-    will-change: transform;
     box-shadow: 0 -22px 60px rgba(0, 0, 0, 0.65);
 }
 
 .skill-group {
-    position: relative;
+    /* NO position here — it would override the deck's position: sticky
+       (sticky is itself a positioned element, so the ::before glow still
+       anchors to the card) */
     padding: 2.1rem 2.3rem;
     border-radius: var(--radius-lg);
     /* opaque — the covered card must not show through */
@@ -171,9 +175,9 @@
     display: flex;
     flex-direction: column;
     /* Large gaps = real scroll travel while each card stays pinned,
-       so the next card visibly rides up and covers the previous one */
-    gap: 34vh;
-    padding-bottom: 8vh;
+       so the next card visibly rides the whole screen up to cover it */
+    gap: 72vh;
+    padding-bottom: 10vh;
 }
 
 .work-stack__card {
@@ -189,7 +193,6 @@
     background: linear-gradient(165deg, #121222 0%, #0a0a17 100%);
     border: 1px solid rgba(34, 211, 238, 0.2);
     box-shadow: 0 -22px 60px rgba(0, 0, 0, 0.65);
-    will-change: transform;
 }
 
 .work-stack__number {
@@ -259,7 +262,7 @@
 
 @media screen and (max-width: 1024px) {
     .skills-stack {
-        gap: 28vh;
+        gap: 68vh;
     }
 }
 
@@ -269,7 +272,7 @@
     }
 
     .skills-stack {
-        gap: 24vh;
+        gap: 66vh;
     }
 
     .skills-stack__card {
@@ -291,7 +294,7 @@
     }
 
     .work-stack {
-        gap: 24vh;
+        gap: 66vh;
     }
 
     .work-stack__card {
