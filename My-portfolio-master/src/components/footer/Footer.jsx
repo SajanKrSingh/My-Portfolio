@@ -47,28 +47,6 @@ const Footer = () => {
               <FaEnvelope /> kumarsajan0013@gmail.com
             </a>
           </div>
-        </div>
-
-        <div className="footer__col">
-          <h4>Navigate</h4>
-          <ul className="footer__links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Skills</a></li>
-          </ul>
-        </div>
-
-        <div className="footer__col">
-          <h4>Explore</h4>
-          <ul className="footer__links">
-            <li><a href="#portfolio">Work</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div className="footer__col">
-          <h4>Connect</h4>
           <div className="footer__socials">
             <a
               href="https://www.linkedin.com/in/sajan-kumar-singh/"
@@ -95,6 +73,24 @@ const Footer = () => {
               <FaInstagram />
             </a>
           </div>
+        </div>
+
+        <div className="footer__col">
+          <h4>Navigate</h4>
+          <ul className="footer__links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Skills</a></li>
+          </ul>
+        </div>
+
+        <div className="footer__col">
+          <h4>Explore</h4>
+          <ul className="footer__links">
+            <li><a href="#portfolio">Work</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
       </div>
 

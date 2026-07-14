@@ -16,32 +16,60 @@ import {
   SiRazorpay,
   SiBootstrap,
   SiMysql,
+  SiPostman,
+  SiVercel,
 } from "react-icons/si";
 import { FaJava, FaAward } from "react-icons/fa";
 import "./experience.css";
 import Reveal from "../common/Reveal";
 
-const skills = [
-  { name: "JavaScript", icon: <SiJavascript /> },
-  { name: "React.js", icon: <SiReact /> },
-  { name: "Next.js 15", icon: <SiNextdotjs /> },
-  { name: "Node.js", icon: <SiNodedotjs /> },
-  { name: "Express.js", icon: <SiExpress /> },
-  { name: "MongoDB", icon: <SiMongodb /> },
-  { name: "Firebase", icon: <SiFirebase /> },
-  { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-  { name: "Redux", icon: <SiRedux /> },
-  { name: "Python", icon: <SiPython /> },
-  { name: "FastAPI", icon: <SiFastapi /> },
-  { name: "Docker", icon: <SiDocker /> },
-  { name: "Git / GitHub", icon: <SiGit /> },
-  { name: "Java", icon: <FaJava /> },
-  { name: "SQL", icon: <SiMysql /> },
-  { name: "Razorpay API", icon: <SiRazorpay /> },
-  { name: "Bootstrap", icon: <SiBootstrap /> },
+const skillGroups = [
+  {
+    title: "Frontend",
+    desc: "Interfaces that feel effortless",
+    skills: [
+      { name: "React.js", icon: <SiReact /> },
+      { name: "Next.js 15", icon: <SiNextdotjs /> },
+      { name: "Tailwind", icon: <SiTailwindcss /> },
+      { name: "Redux", icon: <SiRedux /> },
+      { name: "Bootstrap", icon: <SiBootstrap /> },
+    ],
+  },
+  {
+    title: "Backend",
+    desc: "APIs engineered to scale",
+    skills: [
+      { name: "Node.js", icon: <SiNodedotjs /> },
+      { name: "Express", icon: <SiExpress /> },
+      { name: "FastAPI", icon: <SiFastapi /> },
+      { name: "MongoDB", icon: <SiMongodb /> },
+      { name: "Firebase", icon: <SiFirebase /> },
+    ],
+  },
+  {
+    title: "Languages",
+    desc: "Fluent across the stack",
+    skills: [
+      { name: "JavaScript", icon: <SiJavascript /> },
+      { name: "Java", icon: <FaJava /> },
+      { name: "Python", icon: <SiPython /> },
+      { name: "SQL", icon: <SiMysql /> },
+    ],
+  },
+  {
+    title: "Tools & DevOps",
+    desc: "Shipping with confidence",
+    skills: [
+      { name: "Docker", icon: <SiDocker /> },
+      { name: "Git / GitHub", icon: <SiGit /> },
+      { name: "Postman", icon: <SiPostman /> },
+      { name: "Razorpay", icon: <SiRazorpay /> },
+      { name: "Vercel", icon: <SiVercel /> },
+    ],
+  },
 ];
 
-const workHighlights = [
+const workCards = [
   {
     heading: "Custom Lead Generation Engine",
     details:
@@ -84,45 +112,73 @@ const Experience = () => {
       </div>
 
       <div className="container experience__container">
-        <div className="skills__grid">
-          {skills.map((skill, index) => (
-            <Reveal key={skill.name} delay={(index % 6) * 0.05} y={22}>
-              <div className="skill-chip glass">
-                <span className="skill-chip__icon">{skill.icon}</span>
-                <span className="skill-chip__name">{skill.name}</span>
+        {/* Bento skill groups */}
+        <div className="skills-bento">
+          {skillGroups.map((group, gi) => (
+            <Reveal key={group.title} delay={(gi % 2) * 0.12} y={30}>
+              <div className="skill-group">
+                <div className="skill-group__head">
+                  <div>
+                    <h3>{group.title}</h3>
+                    <p>{group.desc}</p>
+                  </div>
+                  <span className="skill-group__count">
+                    {String(group.skills.length).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="skill-group__tiles">
+                  {group.skills.map((skill) => (
+                    <div className="skill-tile" key={skill.name}>
+                      <span className="skill-tile__icon">{skill.icon}</span>
+                      <span className="skill-tile__name">{skill.name}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </Reveal>
           ))}
         </div>
 
+        {/* Work experience — sticky stacking cards */}
         <div className="work-history">
-          <Reveal className="work-history__card glass" y={34}>
-            <div className="work-history__timeline" />
-            <div className="work-history__header">
+          <Reveal className="work-lead glass" y={30}>
+            <div className="work-lead__header">
               <div>
                 <h3>Web Developer — Next.js &amp; MERN</h3>
-                <p className="work-history__company">EdiGlobe · Bengaluru</p>
+                <p className="work-lead__company">EdiGlobe · Bengaluru</p>
               </div>
-              <span className="work-history__period">Jan 2025 — Present</span>
+              <span className="work-lead__period">Jan 2025 — Present</span>
             </div>
-            <p className="work-history__overview">
+            <p className="work-lead__overview">
               Built a full-stack Enterprise CRM &amp; HRMS platform automating
               the complete business lifecycle on Next.js 15, Firebase and
-              Tailwind CSS.
+              Tailwind CSS. Scroll through the highlights ↓
             </p>
-            <div className="work-history__highlights">
-              {workHighlights.map((item, index) => (
-                <Reveal key={item.heading} delay={index * 0.08} y={20}>
-                  <div className="work-highlight">
-                    <h4>{item.heading}</h4>
-                    <p>{item.details}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
           </Reveal>
+
+          <div className="work-stack">
+            {workCards.map((card, index) => (
+              <div
+                className="work-stack__card"
+                key={card.heading}
+                style={{
+                  top: `calc(5.5rem + ${index * 1.4}rem)`,
+                  zIndex: index + 1,
+                }}
+              >
+                <span className="work-stack__number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h4>{card.heading}</h4>
+                  <p>{card.details}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
+        {/* Certifications */}
         <div className="certs">
           <Reveal as="h3" className="certs__title">
             Certifications

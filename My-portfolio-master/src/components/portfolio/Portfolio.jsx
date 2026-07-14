@@ -10,6 +10,7 @@ import IMG_DESTIN from "../../assets/project/DestinPath.png";
 
 import React from "react";
 import { FaMicrophoneAlt, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { motion } from "framer-motion";
 import Reveal from "../common/Reveal";
 import TiltCard from "../common/TiltCard";
 
@@ -94,6 +95,10 @@ const moreProjects = [
 const Portfolio = () => {
   return (
     <section id="portfolio">
+      {/* Motion graphics: drifting ambient orbs */}
+      <div className="portfolio__orb portfolio__orb--1" aria-hidden="true" />
+      <div className="portfolio__orb portfolio__orb--2" aria-hidden="true" />
+
       <div className="section-head">
         <Reveal as="span" className="section-tag" y={20}>
           Portfolio
@@ -105,19 +110,43 @@ const Portfolio = () => {
 
       <div className="container works">
         {featured.map((project, index) => (
-          <Reveal key={project.id} y={44}>
-            <article className={`work ${index % 2 === 1 ? "work--flip" : ""}`}>
-              <div className="work__media">
-                <div className="work__media-inner">
+          <article
+            className={`work ${index % 2 === 1 ? "work--flip" : ""}`}
+            key={project.id}
+          >
+            <div className="work__media">
+              <div className="work__media-aura" aria-hidden="true" />
+              <motion.div
+                className="work__media-inner"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                <motion.div
+                  className="work__media-clip"
+                  variants={{
+                    hidden: { clipPath: "inset(0% 100% 0% 0%)", opacity: 0.35 },
+                    visible: {
+                      clipPath: "inset(0% 0% 0% 0%)",
+                      opacity: 1,
+                      transition: {
+                        duration: 1,
+                        ease: [0.22, 1, 0.36, 1],
+                        delay: 0.1,
+                      },
+                    },
+                  }}
+                >
                   {project.img ? (
                     <img src={project.img} alt={project.title} loading="lazy" />
                   ) : (
                     <div className="work__media-icon">{project.icon}</div>
                   )}
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
+            </div>
 
-              <div className="work__info">
+            <Reveal className="work__info" y={44}>
                 <span className="work__number">
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -146,9 +175,8 @@ const Portfolio = () => {
                     <FaExternalLinkAlt /> Live Demo
                   </a>
                 </div>
-              </div>
-            </article>
-          </Reveal>
+            </Reveal>
+          </article>
         ))}
       </div>
 
