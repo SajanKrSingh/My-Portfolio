@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
   SiJavascript,
   SiReact,
@@ -99,7 +100,40 @@ const certifications = [
   "Frontend & Backend Development — Coding Ninjas",
 ];
 
+// One card in the scroll-driven pile: it pins below the navbar, and as the
+// next card rides up to cover it, this one presses back (scales down).
+const StackCard = ({ card, index, total, progress }) => {
+  const targetScale = 1 - (total - index) * 0.055;
+  const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
+
+  return (
+    <motion.div
+      className="work-stack__card"
+      style={{
+        top: `calc(6rem + ${index * 1.7}rem)`,
+        zIndex: index + 1,
+        scale,
+        transformOrigin: "top center",
+      }}
+    >
+      <span className="work-stack__number">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <div>
+        <h4>{card.heading}</h4>
+        <p>{card.details}</p>
+      </div>
+    </motion.div>
+  );
+};
+
 const Experience = () => {
+  const stackRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: stackRef,
+    offset: ["start start", "end end"],
+  });
+
   return (
     <section id="experience">
       <div className="section-head">
@@ -156,24 +190,15 @@ const Experience = () => {
             </p>
           </Reveal>
 
-          <div className="work-stack">
+          <div className="work-stack" ref={stackRef}>
             {workCards.map((card, index) => (
-              <div
-                className="work-stack__card"
+              <StackCard
                 key={card.heading}
-                style={{
-                  top: `calc(5.5rem + ${index * 1.4}rem)`,
-                  zIndex: index + 1,
-                }}
-              >
-                <span className="work-stack__number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h4>{card.heading}</h4>
-                  <p>{card.details}</p>
-                </div>
-              </div>
+                card={card}
+                index={index}
+                total={workCards.length}
+                progress={scrollYProgress}
+              />
             ))}
           </div>
         </div>
