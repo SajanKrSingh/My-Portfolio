@@ -2,7 +2,8 @@ import React, { useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
-const COUNT = 1400;
+// Sparse, slow ambient dust — depth without the "starfield" look
+const COUNT = 320;
 
 const Particles = () => {
   const points = useRef();
@@ -12,16 +13,14 @@ const Particles = () => {
     const positions = new Float32Array(COUNT * 3);
     const colors = new Float32Array(COUNT * 3);
     const cyan = new THREE.Color("#22d3ee");
-    const violet = new THREE.Color("#a78bfa");
-    const white = new THREE.Color("#8fa3c8");
+    const violet = new THREE.Color("#8b7cf6");
 
     for (let i = 0; i < COUNT; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 22;
+      positions[i * 3] = (Math.random() - 0.5) * 24;
       positions[i * 3 + 1] = (Math.random() - 0.5) * 14;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 10;
 
-      const r = Math.random();
-      const c = r < 0.45 ? cyan : r < 0.7 ? violet : white;
+      const c = Math.random() < 0.6 ? cyan : violet;
       colors[i * 3] = c.r;
       colors[i * 3 + 1] = c.g;
       colors[i * 3 + 2] = c.b;
@@ -32,8 +31,8 @@ const Particles = () => {
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     if (!points.current) return;
-    points.current.rotation.y = t * 0.018 + mouse.x * 0.06;
-    points.current.rotation.x = Math.sin(t * 0.05) * 0.04 + mouse.y * 0.04;
+    points.current.rotation.y = t * 0.01 + mouse.x * 0.04;
+    points.current.rotation.x = Math.sin(t * 0.04) * 0.03 + mouse.y * 0.03;
   });
 
   return (
@@ -53,10 +52,10 @@ const Particles = () => {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.035}
+        size={0.026}
         vertexColors
         transparent
-        opacity={0.7}
+        opacity={0.32}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
