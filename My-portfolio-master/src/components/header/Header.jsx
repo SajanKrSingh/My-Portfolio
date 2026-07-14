@@ -37,39 +37,58 @@ const Header = () => {
   const videoRef = useRef(null);
 
   // Autoplay with sound where the browser allows it; otherwise start muted
-  // and unmute on the visitor's first interaction (tap/click/key — works on
-  // mobile too). The video only plays while the hero section is on screen.
+  // and unmute on the visitor's first real tap/click. Scroll gestures also
+  // fire touch events but don't count as user activation, so we only listen
+  // for `click` (a genuine tap) and keep retrying until unmuting succeeds.
+  // The video only plays while the hero section is on screen.
   useEffect(() => {
     const video = videoRef.current;
     const hero = heroRef.current;
     if (!video || !hero) return;
 
     let heroVisible = true;
-    let cleanup = () => {};
+    let unmuted = false;
+    let detach = () => {};
 
-    const armUnmuteOnFirstInteraction = () => {
-      const unmute = () => {
-        video.muted = false;
-        if (heroVisible) video.play().catch(() => {});
-        cleanup();
-        cleanup = () => {};
-      };
-      const events = ["pointerdown", "touchend", "click", "keydown"];
-      events.forEach((ev) =>
-        window.addEventListener(ev, unmute, { passive: true })
-      );
-      cleanup = () =>
-        events.forEach((ev) => window.removeEventListener(ev, unmute));
+    const tryUnmutedPlay = () => {
+      if (unmuted) return;
+      video.muted = false;
+      const p = video.play();
+      if (p && p.then) {
+        p.then(() => {
+          if (!video.muted && !video.paused) {
+            unmuted = true;
+            detach();
+          }
+        }).catch(() => {
+          // Browser refused sound — go back to silent playback and keep
+          // the listeners armed for the next genuine tap.
+          video.muted = true;
+          if (heroVisible) video.play().catch(() => {});
+        });
+      }
     };
 
+    const events = ["click", "keydown"];
+    events.forEach((ev) => window.addEventListener(ev, tryUnmutedPlay));
+    detach = () =>
+      events.forEach((ev) => window.removeEventListener(ev, tryUnmutedPlay));
+
+    // First attempt without any interaction (desktop browsers often allow it)
     video.muted = false;
     const attempt = video.play();
-    if (attempt && attempt.catch) {
-      attempt.catch(() => {
-        video.muted = true;
-        video.play().catch(() => {});
-        armUnmuteOnFirstInteraction();
-      });
+    if (attempt && attempt.then) {
+      attempt
+        .then(() => {
+          if (!video.muted && !video.paused) {
+            unmuted = true;
+            detach();
+          }
+        })
+        .catch(() => {
+          video.muted = true;
+          video.play().catch(() => {});
+        });
     }
 
     // Pause the video the moment the hero scrolls out of view; resume on return
@@ -88,7 +107,7 @@ const Header = () => {
 
     return () => {
       observer.disconnect();
-      cleanup();
+      detach();
     };
   }, []);
 
