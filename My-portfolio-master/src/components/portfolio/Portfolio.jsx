@@ -13,6 +13,7 @@ import { FaMicrophoneAlt, FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Reveal from "../common/Reveal";
 import TiltCard from "../common/TiltCard";
+import TextReveal from "../common/TextReveal";
 
 const featured = [
   {
@@ -103,9 +104,12 @@ const Portfolio = () => {
         <Reveal as="span" className="section-tag" y={20}>
           Portfolio
         </Reveal>
-        <Reveal as="h2" className="section-title" delay={0.08}>
-          Selected <span className="gradient-text">works</span>
-        </Reveal>
+        <TextReveal
+          className="section-title"
+          text="Selected works"
+          highlight={["works"]}
+          delay={0.1}
+        />
       </div>
 
       <div className="container works">

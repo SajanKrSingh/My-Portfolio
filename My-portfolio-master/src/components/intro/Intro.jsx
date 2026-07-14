@@ -3,6 +3,7 @@ import React from "react";
 import img from "../../assets/Me1.png";
 import TiltCard from "../common/TiltCard";
 import Reveal from "../common/Reveal";
+import TextReveal from "../common/TextReveal";
 import StatCounter from "../common/StatCounter";
 import { FaGraduationCap, FaBriefcase } from "react-icons/fa";
 
@@ -20,9 +21,12 @@ const Intro = () => {
         <Reveal as="span" className="section-tag" y={20}>
           About Me
         </Reveal>
-        <Reveal as="h2" className="section-title" delay={0.08}>
-          Turning ideas into <span className="gradient-text">products</span>
-        </Reveal>
+        <TextReveal
+          className="section-title"
+          text="Turning ideas into products"
+          highlight={["products"]}
+          delay={0.1}
+        />
       </div>
 
       <div className="container about__container">

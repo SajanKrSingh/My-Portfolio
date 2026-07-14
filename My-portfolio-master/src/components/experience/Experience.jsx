@@ -23,6 +23,7 @@ import {
 import { FaJava, FaAward } from "react-icons/fa";
 import "./experience.css";
 import Reveal from "../common/Reveal";
+import TextReveal from "../common/TextReveal";
 
 const skillGroups = [
   {
@@ -140,9 +141,12 @@ const Experience = () => {
         <Reveal as="span" className="section-tag" y={20}>
           Skills & Experience
         </Reveal>
-        <Reveal as="h2" className="section-title" delay={0.08}>
-          My technical <span className="gradient-text">arsenal</span>
-        </Reveal>
+        <TextReveal
+          className="section-title"
+          text="My technical arsenal"
+          highlight={["arsenal"]}
+          delay={0.1}
+        />
       </div>
 
       <div className="container experience__container">

@@ -3,6 +3,7 @@ import { BsLinkedin } from "react-icons/bs";
 import { FaGithub, FaInstagram, FaArrowUp, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import logo from "../../assets/myLogo.png";
 import Reveal from "../common/Reveal";
+import TextReveal from "../common/TextReveal";
 import "./footer.css";
 
 const Footer = () => {
@@ -16,11 +17,16 @@ const Footer = () => {
 
       {/* Big CTA block */}
       <div className="container footer__cta">
-        <Reveal as="h2" className="footer__cta-title">
-          Have a project in mind?
-          <br />
-          <span className="gradient-text">Let's build it together.</span>
-        </Reveal>
+        <h2 className="footer__cta-title">
+          <TextReveal as="span" text="Have a project in mind?" amount={0.8} />
+          <TextReveal
+            as="span"
+            text="Let's build it together."
+            highlight={["Let's", "build", "it", "together"]}
+            delay={0.3}
+            amount={0.8}
+          />
+        </h2>
         <Reveal delay={0.15}>
           <a href="#contact" className="btn btn-primary footer__cta-btn">
             Get In Touch

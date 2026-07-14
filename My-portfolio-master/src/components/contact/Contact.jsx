@@ -6,6 +6,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { FaPhoneAlt, FaMapMarkerAlt, FaPaperPlane } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import Reveal from "../common/Reveal";
+import TextReveal from "../common/TextReveal";
 
 const Contact = () => {
   const [message, setMessage] = useState(false);
@@ -37,9 +38,12 @@ const Contact = () => {
         <Reveal as="span" className="section-tag" y={20}>
           Contact
         </Reveal>
-        <Reveal as="h2" className="section-title" delay={0.08}>
-          Let's build something <span className="gradient-text">great</span>
-        </Reveal>
+        <TextReveal
+          className="section-title"
+          text="Let's build something great"
+          highlight={["great"]}
+          delay={0.1}
+        />
       </div>
 
       <div className="container contact__container">

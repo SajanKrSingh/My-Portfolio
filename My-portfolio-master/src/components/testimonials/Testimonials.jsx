@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./testimonials.css";
 import Reveal from "../common/Reveal";
+import TextReveal from "../common/TextReveal";
 
 const testimonials = [
   {
@@ -56,9 +57,12 @@ const Testimonials = () => {
         <Reveal as="span" className="section-tag" y={20}>
           Testimonials
         </Reveal>
-        <Reveal as="h2" className="section-title" delay={0.08}>
-          What people <span className="gradient-text">say</span>
-        </Reveal>
+        <TextReveal
+          className="section-title"
+          text="What people say"
+          highlight={["say"]}
+          delay={0.1}
+        />
       </div>
 
       <Reveal y={30}>
