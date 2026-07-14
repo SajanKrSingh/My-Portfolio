@@ -176,17 +176,19 @@
     flex-direction: column;
     /* Large gaps = real scroll travel while each card stays pinned,
        so the next card visibly rides up and covers the previous one */
-    gap: 38vh;
+    gap: 34vh;
     padding-bottom: 8vh;
 }
 
 .work-stack__card {
     position: sticky;
+    /* every card pins at the same spot → each new card fully covers the last */
+    top: 6.5rem;
     display: flex;
     align-items: flex-start;
     gap: 1.8rem;
     padding: 2.4rem 2.6rem;
-    min-height: 200px;
+    min-height: 230px;
     border-radius: var(--radius-lg);
     background: linear-gradient(165deg, #121222 0%, #0a0a17 100%);
     border: 1px solid rgba(34, 211, 238, 0.2);
@@ -284,13 +286,15 @@
     }
 
     .work-stack {
-        gap: 30vh;
+        gap: 24vh;
     }
 
     .work-stack__card {
+        top: 5.5rem;
         flex-direction: column;
         gap: 0.9rem;
         padding: 1.6rem 1.4rem;
+        min-height: 250px;
     }
 
     .work-stack__number {

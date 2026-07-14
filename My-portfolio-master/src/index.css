@@ -36,6 +36,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* clip (not hidden) kills sideways overflow from decorative orbs/glows
+     without creating a scroll container — position: sticky keeps working */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::-webkit-scrollbar {
@@ -62,6 +66,7 @@ body {
   color: var(--color-white);
   line-height: 1.7;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Fixed ambient background layers */

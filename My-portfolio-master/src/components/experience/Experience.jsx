@@ -100,17 +100,17 @@ const certifications = [
   "Frontend & Backend Development — Coding Ninjas",
 ];
 
-// One card in the scroll-driven pile: it pins below the navbar, and as the
-// next card rides up to cover it, this one presses back (scales down).
+// One card in the scroll-driven deck: every card pins at the SAME spot below
+// the navbar; the next card rides up and fully covers it while the covered
+// card presses back (scales down).
 const StackCard = ({ card, index, total, progress }) => {
-  const targetScale = 1 - (total - index) * 0.055;
+  const targetScale = 1 - (total - index) * 0.06;
   const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
 
   return (
     <motion.div
       className="work-stack__card"
       style={{
-        top: `calc(6rem + ${index * 1.7}rem)`,
         zIndex: index + 1,
         scale,
         transformOrigin: "top center",
