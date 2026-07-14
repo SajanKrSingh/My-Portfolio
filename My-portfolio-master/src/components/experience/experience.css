@@ -4,22 +4,30 @@
     gap: 5rem;
 }
 
-/* ===== Bento skill groups ===== */
-.skills-bento {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
+/* ===== Skill groups — scroll-driven cover deck ===== */
+.skills-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 34vh;
+    padding-bottom: 8vh;
+}
+
+.skills-stack__card {
+    position: sticky;
+    top: 6.5rem;
+    min-height: 260px;
+    will-change: transform;
+    box-shadow: 0 -22px 60px rgba(0, 0, 0, 0.65);
 }
 
 .skill-group {
     position: relative;
-    height: 100%;
-    padding: 1.9rem 2rem;
+    padding: 2.1rem 2.3rem;
     border-radius: var(--radius-lg);
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-    border: 1px solid var(--color-border);
+    /* opaque — the covered card must not show through */
+    background: linear-gradient(165deg, #121222 0%, #0a0a17 100%);
+    border: 1px solid rgba(34, 211, 238, 0.2);
     overflow: hidden;
-    transition: var(--transition);
 }
 
 .skill-group::before {
@@ -30,20 +38,8 @@
     width: 320px;
     height: 320px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.12), transparent 65%);
-    opacity: 0;
-    transition: var(--transition);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.1), transparent 65%);
     pointer-events: none;
-}
-
-.skill-group:hover {
-    transform: translateY(-5px);
-    border-color: rgba(34, 211, 238, 0.4);
-    box-shadow: 0 22px 50px rgba(34, 211, 238, 0.1);
-}
-
-.skill-group:hover::before {
-    opacity: 1;
 }
 
 .skill-group__head {
@@ -262,14 +258,23 @@
 }
 
 @media screen and (max-width: 1024px) {
-    .skills-bento {
-        grid-template-columns: 1fr;
+    .skills-stack {
+        gap: 28vh;
     }
 }
 
 @media screen and (max-width: 600px) {
     .experience__container {
         gap: 3.5rem;
+    }
+
+    .skills-stack {
+        gap: 24vh;
+    }
+
+    .skills-stack__card {
+        top: 5.5rem;
+        min-height: 340px;
     }
 
     .skill-group {

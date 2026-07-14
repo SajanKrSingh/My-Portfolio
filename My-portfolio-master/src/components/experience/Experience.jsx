@@ -100,29 +100,23 @@ const certifications = [
   "Frontend & Backend Development — Coding Ninjas",
 ];
 
-// One card in the scroll-driven deck: every card pins at the SAME spot below
+// One card in a scroll-driven deck: every card pins at the SAME spot below
 // the navbar; the next card rides up and fully covers it while the covered
 // card presses back (scales down).
-const StackCard = ({ card, index, total, progress }) => {
+const DeckCard = ({ index, total, progress, className = "", children }) => {
   const targetScale = 1 - (total - index) * 0.06;
   const scale = useTransform(progress, [index / total, 1], [1, targetScale]);
 
   return (
     <motion.div
-      className="work-stack__card"
+      className={className}
       style={{
         zIndex: index + 1,
         scale,
         transformOrigin: "top center",
       }}
     >
-      <span className="work-stack__number">
-        {String(index + 1).padStart(2, "0")}
-      </span>
-      <div>
-        <h4>{card.heading}</h4>
-        <p>{card.details}</p>
-      </div>
+      {children}
     </motion.div>
   );
 };
@@ -131,6 +125,12 @@ const Experience = () => {
   const stackRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: stackRef,
+    offset: ["start start", "end end"],
+  });
+
+  const skillsRef = useRef(null);
+  const { scrollYProgress: skillsProgress } = useScroll({
+    target: skillsRef,
     offset: ["start start", "end end"],
   });
 
@@ -146,30 +146,34 @@ const Experience = () => {
       </div>
 
       <div className="container experience__container">
-        {/* Bento skill groups */}
-        <div className="skills-bento">
+        {/* Skill groups — scroll-driven cover deck */}
+        <div className="skills-stack" ref={skillsRef}>
           {skillGroups.map((group, gi) => (
-            <Reveal key={group.title} delay={(gi % 2) * 0.12} y={30}>
-              <div className="skill-group">
-                <div className="skill-group__head">
-                  <div>
-                    <h3>{group.title}</h3>
-                    <p>{group.desc}</p>
-                  </div>
-                  <span className="skill-group__count">
-                    {String(group.skills.length).padStart(2, "0")}
-                  </span>
+            <DeckCard
+              key={group.title}
+              index={gi}
+              total={skillGroups.length}
+              progress={skillsProgress}
+              className="skill-group skills-stack__card"
+            >
+              <div className="skill-group__head">
+                <div>
+                  <h3>{group.title}</h3>
+                  <p>{group.desc}</p>
                 </div>
-                <div className="skill-group__tiles">
-                  {group.skills.map((skill) => (
-                    <div className="skill-tile" key={skill.name}>
-                      <span className="skill-tile__icon">{skill.icon}</span>
-                      <span className="skill-tile__name">{skill.name}</span>
-                    </div>
-                  ))}
-                </div>
+                <span className="skill-group__count">
+                  {String(gi + 1).padStart(2, "0")}
+                </span>
               </div>
-            </Reveal>
+              <div className="skill-group__tiles">
+                {group.skills.map((skill) => (
+                  <div className="skill-tile" key={skill.name}>
+                    <span className="skill-tile__icon">{skill.icon}</span>
+                    <span className="skill-tile__name">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </DeckCard>
           ))}
         </div>
 
@@ -192,13 +196,21 @@ const Experience = () => {
 
           <div className="work-stack" ref={stackRef}>
             {workCards.map((card, index) => (
-              <StackCard
+              <DeckCard
                 key={card.heading}
-                card={card}
                 index={index}
                 total={workCards.length}
                 progress={scrollYProgress}
-              />
+                className="work-stack__card"
+              >
+                <span className="work-stack__number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h4>{card.heading}</h4>
+                  <p>{card.details}</p>
+                </div>
+              </DeckCard>
             ))}
           </div>
         </div>
