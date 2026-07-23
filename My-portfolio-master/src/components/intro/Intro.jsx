@@ -53,11 +53,13 @@ const Intro = () => {
         <div className="about__content">
           <Reveal as="p" delay={0.15}>
             Hi, I'm <strong>Sajan Kumar Singh</strong> — a Full Stack Developer
-            specializing in the <strong>Next.js / MERN stack</strong>. At
-            EdiGlobe I engineered a full-scale Enterprise CRM &amp; HRMS
-            platform: a custom lead-generation engine, role-based access
-            control, QR-code attendance, and Razorpay-powered payment
-            workflows — all built on Next.js 15, Firebase and Tailwind CSS.
+            specializing in the <strong>Next.js / MERN stack</strong>. I hold
+            an MCA from Chandigarh University (2023–2025) and a BCA from T P
+            Verma College (2019–2023). At EdiGlobe I engineered a full-scale
+            Enterprise CRM &amp; HRMS platform: a custom lead-generation
+            engine, role-based access control, QR-code attendance, and
+            Razorpay-powered payment workflows — all built on Next.js 15,
+            Firebase and Tailwind CSS.
           </Reveal>
           <Reveal as="p" delay={0.22}>
             Beyond work, I ship AI-first products — a real-time voice
